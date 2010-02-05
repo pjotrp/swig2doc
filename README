@@ -1,0 +1,12 @@
+SWIG2DOC is an attempt at automatic generation of (HTML) documentation from
+SWIG generated code (via XML). In addition Doxygen output will be added, as
+well as sidewise injected documenation.
+
+This is part of the Biolib initiative, see http://biolib.open-bio.org/.
+Meanwhile it may be of use to more people, so it lives in its own repository.
+The code is written in Ruby and depends on libxml2 and libxml-ruby.
+
+This code is published under the same license as SWIG. See
+http://www.swig.org/Release/LICENSE. 
+
+Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
