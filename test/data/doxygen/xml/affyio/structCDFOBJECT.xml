@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="structCDFOBJECT" kind="struct" prot="public">
+    <compoundname>CDFOBJECT</compoundname>
+    <includes refid="biolib__affyio_8h" local="no">biolib_affyio.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCDFOBJECT_1993e69986808f9a9c7e35dfd7e170721" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CDFOBJECT::id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>id</name>
+        <briefdescription>
+<para>Should be &apos;[CDF]&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="101" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="101" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CDFOBJECT::isText</definition>
+        <argsstring></argsstring>
+        <name>isText</name>
+        <briefdescription>
+<para>Is this a textual file? </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="103" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="103" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" compoundref="biolib__affyio_8c" startline="333" endline="348">cdf_num_probesets</referencedby>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" prot="public" static="no" mutable="no">
+        <type>cdf_text</type>
+        <definition>cdf_text CDFOBJECT::text</definition>
+        <argsstring></argsstring>
+        <name>text</name>
+        <briefdescription>
+<para>Affyio internal reference. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="105" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="105" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" compoundref="biolib__affyio_8c" startline="333" endline="348">cdf_num_probesets</referencedby>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" prot="public" static="no" mutable="no">
+        <type>cdf_xda</type>
+        <definition>cdf_xda CDFOBJECT::xda</definition>
+        <argsstring></argsstring>
+        <name>xda</name>
+        <briefdescription>
+<para>Affyio internal reference. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="107" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="107" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" compoundref="biolib__affyio_8c" startline="333" endline="348">cdf_num_probesets</referencedby>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CDFOBJECT::cols</definition>
+        <argsstring></argsstring>
+        <name>cols</name>
+        <briefdescription>
+<para>Chip cols. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="109" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="109" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CDFOBJECT::rows</definition>
+        <argsstring></argsstring>
+        <name>rows</name>
+        <briefdescription>
+<para>Chip rows. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="111" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="111" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" compoundref="biolib__affyio_8c" startline="283" endline="315">open_cdffile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" prot="public" static="no" mutable="no">
+        <type><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref> *</type>
+        <definition>CDFPROBESET* CDFOBJECT::probeset</definition>
+        <argsstring></argsstring>
+        <name>probeset</name>
+        <briefdescription>
+<para>Pointer to probeset info array. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="113" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="113" bodyend="-1"/>
+        <referencedby refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" compoundref="biolib__affyio_8c" startline="369" endline="372">cdf_mmprobe_info</referencedby>
+        <referencedby refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" compoundref="biolib__affyio_8c" startline="361" endline="364">cdf_pmprobe_info</referencedby>
+        <referencedby refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" compoundref="biolib__affyio_8c" startline="353" endline="356">cdf_probeset_info</referencedby>
+        <referencedby refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" compoundref="biolib__affyio_8c" startline="393" endline="401">cel_mm</referencedby>
+        <referencedby refid="group__affyio_1g8187b62e9e398567705c7332318f2311" compoundref="biolib__affyio_8c" startline="380" endline="388">cel_pm</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>State object - keeps track of opened CDF file </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>CDFOBJECT</label>
+        <link refid="structCDFOBJECT"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>probeset</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CDFPROBESET</label>
+        <link refid="structCDFPROBESET"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mm
+pm</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CDFPROBE</label>
+        <link refid="structCDFPROBE"/>
+      </node>
+    </collaborationgraph>
+    <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="99" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="99" bodyend="114"/>
+    <listofallmembers>
+      <member refid="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>cols</name></member>
+      <member refid="structCDFOBJECT_1993e69986808f9a9c7e35dfd7e170721" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>id</name></member>
+      <member refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>isText</name></member>
+      <member refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>probeset</name></member>
+      <member refid="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>rows</name></member>
+      <member refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>text</name></member>
+      <member refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" prot="public" virt="non-virtual"><scope>CDFOBJECT</scope><name>xda</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.5.6">
+  <compound refid="structCDFOBJECT" kind="struct"><name>CDFOBJECT</name>
+    <member refid="structCDFOBJECT_1993e69986808f9a9c7e35dfd7e170721" kind="variable"><name>id</name></member>
+    <member refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" kind="variable"><name>isText</name></member>
+    <member refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kind="variable"><name>text</name></member>
+    <member refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kind="variable"><name>xda</name></member>
+    <member refid="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" kind="variable"><name>cols</name></member>
+    <member refid="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" kind="variable"><name>rows</name></member>
+    <member refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kind="variable"><name>probeset</name></member>
+  </compound>
+  <compound refid="structCDFPROBE" kind="struct"><name>CDFPROBE</name>
+    <member refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kind="variable"><name>x</name></member>
+    <member refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kind="variable"><name>y</name></member>
+  </compound>
+  <compound refid="structCDFPROBESET" kind="struct"><name>CDFPROBESET</name>
+    <member refid="structCDFPROBESET_1bd31ee25715f5f6886c78110e7ddfdc7" kind="variable"><name>isQC</name></member>
+    <member refid="structCDFPROBESET_12663dd2ff7e798cc06ed1e7ac9f5153f" kind="variable"><name>pm_num</name></member>
+    <member refid="structCDFPROBESET_1473cce73f0905569b1f5249bd36c00d6" kind="variable"><name>mm_num</name></member>
+    <member refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" kind="variable"><name>pm</name></member>
+    <member refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" kind="variable"><name>mm</name></member>
+    <member refid="structCDFPROBESET_151fea0f7c5d34a73c89c01cb19e07aa8" kind="variable"><name>name</name></member>
+  </compound>
+  <compound refid="structCELOBJECT" kind="struct"><name>CELOBJECT</name>
+    <member refid="structCELOBJECT_1b358171dd75611b28e38e25150ea9e7f" kind="variable"><name>id</name></member>
+    <member refid="structCELOBJECT_1b14fd38d4316f7318e8946dea858cade" kind="variable"><name>cel</name></member>
+    <member refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" kind="variable"><name>masks</name></member>
+    <member refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" kind="variable"><name>outliers</name></member>
+  </compound>
+  <compound refid="mainpage_8txt" kind="file"><name>mainpage.txt</name>
+  </compound>
+  <compound refid="biolib__affyio_8c" kind="file"><name>biolib_affyio.c</name>
+    <member refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" kind="function"><name>open_celfile</name></member>
+    <member refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" kind="function"><name>close_celfile</name></member>
+    <member refid="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" kind="function"><name>cel_num_cols</name></member>
+    <member refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" kind="function"><name>cel_num_rows</name></member>
+    <member refid="group__affyio_1ge769422d05568d232588cc6e1645215e" kind="function"><name>cel_num_masks</name></member>
+    <member refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" kind="function"><name>cel_num_outliers</name></member>
+    <member refid="group__affyio_1g282def666156d398b53da92254becd70" kind="function"><name>cel_size</name></member>
+    <member refid="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" kind="function"><name>cel_num_intensities</name></member>
+    <member refid="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" kind="function"><name>cel_intensity</name></member>
+    <member refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kind="function"><name>cel_intensity_xy</name></member>
+    <member refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" kind="function"><name>cel_intensities</name></member>
+    <member refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" kind="function"><name>cel_stddev</name></member>
+    <member refid="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" kind="function"><name>cel_stddevs</name></member>
+    <member refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" kind="function"><name>cel_mask</name></member>
+    <member refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" kind="function"><name>cel_outlier</name></member>
+    <member refid="group__affyio_1g302ede05aff026a34f9dc186caf02b5d" kind="function"><name>cdf_alloc_probesets</name></member>
+    <member refid="group__affyio_1gc777f9f7168b7c6d15ca772e227a9a21" kind="function"><name>cdf_calc_text_probe_refs</name></member>
+    <member refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kind="function"><name>open_cdffile</name></member>
+    <member refid="group__affyio_1g1f63b6ba4ec2c507f3635eee01ae81b4" kind="function"><name>close_cdffile</name></member>
+    <member refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kind="function"><name>cdf_num_probesets</name></member>
+    <member refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" kind="function"><name>cdf_probeset_info</name></member>
+    <member refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" kind="function"><name>cdf_pmprobe_info</name></member>
+    <member refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" kind="function"><name>cdf_mmprobe_info</name></member>
+    <member refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kind="function"><name>cel_pm</name></member>
+    <member refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" kind="function"><name>cel_mm</name></member>
+  </compound>
+  <compound refid="biolib__affyio_8h" kind="file"><name>biolib_affyio.h</name>
+    <member refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" kind="function"><name>open_celfile</name></member>
+    <member refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" kind="function"><name>close_celfile</name></member>
+    <member refid="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" kind="function"><name>cel_num_cols</name></member>
+    <member refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" kind="function"><name>cel_num_rows</name></member>
+    <member refid="group__affyio_1g282def666156d398b53da92254becd70" kind="function"><name>cel_size</name></member>
+    <member refid="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" kind="function"><name>cel_num_intensities</name></member>
+    <member refid="group__affyio_1ge769422d05568d232588cc6e1645215e" kind="function"><name>cel_num_masks</name></member>
+    <member refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" kind="function"><name>cel_num_outliers</name></member>
+    <member refid="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" kind="function"><name>cel_intensity</name></member>
+    <member refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kind="function"><name>cel_intensity_xy</name></member>
+    <member refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" kind="function"><name>cel_intensities</name></member>
+    <member refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" kind="function"><name>cel_stddev</name></member>
+    <member refid="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" kind="function"><name>cel_stddevs</name></member>
+    <member refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" kind="function"><name>cel_mask</name></member>
+    <member refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" kind="function"><name>cel_outlier</name></member>
+    <member refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kind="function"><name>open_cdffile</name></member>
+    <member refid="group__affyio_1g1f63b6ba4ec2c507f3635eee01ae81b4" kind="function"><name>close_cdffile</name></member>
+    <member refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kind="function"><name>cdf_num_probesets</name></member>
+    <member refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" kind="function"><name>cdf_probeset_info</name></member>
+    <member refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" kind="function"><name>cdf_pmprobe_info</name></member>
+    <member refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" kind="function"><name>cdf_mmprobe_info</name></member>
+    <member refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kind="function"><name>cel_pm</name></member>
+    <member refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" kind="function"><name>cel_mm</name></member>
+  </compound>
+  <compound refid="group__affyio" kind="group"><name>affyio</name>
+    <member refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" kind="function"><name>open_celfile</name></member>
+    <member refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" kind="function"><name>close_celfile</name></member>
+    <member refid="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" kind="function"><name>cel_num_cols</name></member>
+    <member refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" kind="function"><name>cel_num_rows</name></member>
+    <member refid="group__affyio_1ge769422d05568d232588cc6e1645215e" kind="function"><name>cel_num_masks</name></member>
+    <member refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" kind="function"><name>cel_num_outliers</name></member>
+    <member refid="group__affyio_1g282def666156d398b53da92254becd70" kind="function"><name>cel_size</name></member>
+    <member refid="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" kind="function"><name>cel_num_intensities</name></member>
+    <member refid="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" kind="function"><name>cel_intensity</name></member>
+    <member refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kind="function"><name>cel_intensity_xy</name></member>
+    <member refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" kind="function"><name>cel_intensities</name></member>
+    <member refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" kind="function"><name>cel_stddev</name></member>
+    <member refid="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" kind="function"><name>cel_stddevs</name></member>
+    <member refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" kind="function"><name>cel_mask</name></member>
+    <member refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" kind="function"><name>cel_outlier</name></member>
+    <member refid="group__affyio_1g302ede05aff026a34f9dc186caf02b5d" kind="function"><name>cdf_alloc_probesets</name></member>
+    <member refid="group__affyio_1gc777f9f7168b7c6d15ca772e227a9a21" kind="function"><name>cdf_calc_text_probe_refs</name></member>
+    <member refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kind="function"><name>open_cdffile</name></member>
+    <member refid="group__affyio_1g1f63b6ba4ec2c507f3635eee01ae81b4" kind="function"><name>close_cdffile</name></member>
+    <member refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kind="function"><name>cdf_num_probesets</name></member>
+    <member refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" kind="function"><name>cdf_probeset_info</name></member>
+    <member refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" kind="function"><name>cdf_pmprobe_info</name></member>
+    <member refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" kind="function"><name>cdf_mmprobe_info</name></member>
+    <member refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kind="function"><name>cel_pm</name></member>
+    <member refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" kind="function"><name>cel_mm</name></member>
+  </compound>
+  <compound refid="dir_9a91fc99176b0dfce3e6abbf8c59e840" kind="dir"><name>src/clibs/affyio/</name>
+  </compound>
+  <compound refid="dir_8f3ed35bea040231396244999f95199d" kind="dir"><name>src/clibs/</name>
+  </compound>
+  <compound refid="dir_dbe5d6a15cecba811667e94570b0c152" kind="dir"><name>src/clibs/affyio/src/</name>
+  </compound>
+  <compound refid="dir_99569432c4c7e05249d94fe556a5233e" kind="dir"><name>src/</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>BioLib API Documentation</title>
+    <detaileddescription>
+<para>These pages describe the BioLib API as generated from the source code. This API can be used directly from Perl, Python and Ruby.</para><para>Using the mapped functions is straightforward. For example the method read_reading is listed in the Staden io_lib API as:</para><para>The <bold>C</bold> method</para><para><programlisting><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Read<sp/>*read_reading(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fn,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>format);</highlight></codeline>
+</programlisting></para><para>The <bold>Perl</bold> mapping</para><para><programlisting><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$result<sp/>=<sp/>staden_io_lib::read_reading($fn,$staden_io_lib::TT_ANY);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print<sp/>$result-&gt;{NBases};</highlight></codeline>
+</programlisting></para><para>The <bold>Python</bold> mapping</para><para><programlisting><codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>biolib.staden_io_lib<sp/>as<sp/>io_lib</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>io_lib.read_reading(fn,io_lib.TT_ANY)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print<sp/>result.NBases</highlight></codeline>
+</programlisting></para><para>The <bold>Ruby</bold> mapping</para><para><programlisting><codeline><highlight class="normal"><sp/><sp/><sp/><sp/>require<sp/></highlight><highlight class="stringliteral">&apos;biolib/staden_io_lib&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>result<sp/>=<sp/>Biolib::Staden_io_lib.read_reading(fn,Biolib::Staden_io_lib::TT_ANY)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print<sp/>result.NBases</highlight></codeline>
+</programlisting></para><para>This is thanks to BioLib&apos;s SWIG mapping from C. The documentation of the C API is generated straight from the source code, so it should be up-to-date.</para><para>For more information on the BioLib project and language mappings, see <ulink url="http://biolib.open-bio.org/">http://biolib.open-bio.org/</ulink> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

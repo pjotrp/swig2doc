@@ -1,0 +1,942 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="biolib__affyio_8c" kind="file">
+    <compoundname>biolib_affyio.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">R.h</includes>
+    <includes refid="biolib__affyio_8h" local="no">biolib_affyio.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="8">
+        <label>read_cdf.h</label>
+      </node>
+      <node id="7">
+        <label>read_abatch.h</label>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="5">
+        <label>R.h</label>
+      </node>
+      <node id="2">
+        <label>src/clibs/affyio/src/biolib_affyio.c</label>
+        <link refid="biolib_affyio.c"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>biolib_affyio.h</label>
+        <link refid="biolib__affyio_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+        <definition>CELOBJECT* open_celfile</definition>
+        <argsstring>(const char *celfilename)</argsstring>
+        <name>open_celfile</name>
+        <param>
+          <type>const char *</type>
+          <declname>celfilename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open a cel file using the Affyio library and return a pointer to a <ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref>, which maintains state keeping track of the opened CEL data. The full array data gets stored in memory - including stddev, npixels, masks and outliers.</para><para>Use the direct celfile_methods instead, for more effecient memory usage.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>celfilename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a valid Affy CEL file (or .gz edition)</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer to <ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref></para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" kindref="member">close_celfile</ref> </para><para><ref refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" kindref="member">cel_intensities</ref> </para><para><ref refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" kindref="member">cel_stddev</ref> </para><para>celfile_intensities </para><para><ref refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kindref="member">open_cdffile</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="34" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="33" bodyend="42"/>
+        <references refid="structCELOBJECT_1b14fd38d4316f7318e8946dea858cade" compoundref="biolib__affyio_8h" startline="50">CELOBJECT::cel</references>
+        <references refid="structCELOBJECT_1b358171dd75611b28e38e25150ea9e7f" compoundref="biolib__affyio_8h" startline="48">CELOBJECT::id</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void close_celfile</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>close_celfile</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Close a <ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> opened with open_celfile and frees up RAM</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>object</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="52" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="51" bodyend="75"/>
+        <references refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" compoundref="biolib__affyio_8h" startline="52">CELOBJECT::masks</references>
+        <references refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" compoundref="biolib__affyio_8h" startline="54">CELOBJECT::outliers</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_num_cols</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_num_cols</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of columns on the chip </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="80" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_num_rows</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_num_rows</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of rows on the chip </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="87" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="86" bodyend="89"/>
+        <referencedby refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" compoundref="biolib__affyio_8c" startline="138" endline="141">cel_intensity_xy</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1ge769422d05568d232588cc6e1645215e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_num_masks</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_num_masks</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of masked probes </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="94" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_num_outliers</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_num_outliers</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of outliers </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="101" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="100" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g282def666156d398b53da92254becd70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_size</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_size</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of cells (probes) - [INTENSITY]-&gt;NumberCells (rows*cols) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="109" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cel_num_intensities</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_num_intensities</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of intensities (probes) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="116" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="115" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double cel_intensity</definition>
+        <argsstring>(CELOBJECT *object, unsigned long index)</argsstring>
+        <name>cel_intensity</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>index of cel/probe <simplesect kind="return"><para>an intensity value </para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kindref="member">cel_pm</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="127" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double cel_intensity_xy</definition>
+        <argsstring>(CELOBJECT *object, unsigned long x, unsigned long y)</argsstring>
+        <name>cel_intensity_xy</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>x pos on chip  y pos on chip <simplesect kind="return"><para>an intensity value </para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kindref="member">cel_pm</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="139" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="138" bodyend="141"/>
+        <references refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" compoundref="biolib__affyio_8c" startline="86" endline="89">cel_num_rows</references>
+        <referencedby refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" compoundref="biolib__affyio_8c" startline="393" endline="401">cel_mm</referencedby>
+        <referencedby refid="group__affyio_1g8187b62e9e398567705c7332318f2311" compoundref="biolib__affyio_8c" startline="380" endline="388">cel_pm</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double *</type>
+        <definition>double* cel_intensities</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_intensities</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a double array to the cel/probe intensities </para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kindref="member">cel_pm</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="148" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="147" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double cel_stddev</definition>
+        <argsstring>(CELOBJECT *object, unsigned long index)</argsstring>
+        <name>cel_stddev</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the stddev for the cel/probe </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="155" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="154" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double *</type>
+        <definition>double* cel_stddevs</definition>
+        <argsstring>(CELOBJECT *object)</argsstring>
+        <name>cel_stddevs</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a double array to the stddev </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="162" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="161" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int cel_mask</definition>
+        <argsstring>(CELOBJECT *object, unsigned long index)</argsstring>
+        <name>cel_mask</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the nth item in the mask list </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the cel/probe mask index </para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1ge769422d05568d232588cc6e1645215e" kindref="member">cel_num_masks</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="173" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="172" bodyend="185"/>
+        <references refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" compoundref="biolib__affyio_8h" startline="52">CELOBJECT::masks</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int cel_outlier</definition>
+        <argsstring>(CELOBJECT *object, unsigned long index)</argsstring>
+        <name>cel_outlier</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>object</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the nth item in the outlier list </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the outlier cel/probe index </para></simplesect>
+<simplesect kind="see"><para><ref refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" kindref="member">cel_num_outliers</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="193" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="192" bodyend="205"/>
+        <references refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" compoundref="biolib__affyio_8h" startline="54">CELOBJECT::outliers</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g302ede05aff026a34f9dc186caf02b5d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void cdf_alloc_probesets</definition>
+        <argsstring>(CDFOBJECT *cdfobject)</argsstring>
+        <name>cdf_alloc_probesets</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="210" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="209" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gc777f9f7168b7c6d15ca772e227a9a21" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void cdf_calc_text_probe_refs</definition>
+        <argsstring>(CDFOBJECT *cdfobject)</argsstring>
+        <name>cdf_calc_text_probe_refs</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="220" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="219" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+        <definition>CDFOBJECT* open_cdffile</definition>
+        <argsstring>(const char *cdffilename)</argsstring>
+        <name>open_cdffile</name>
+        <param>
+          <type>const char *</type>
+          <declname>cdffilename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Open a cdf file using the Affyio library and return a pointer to a <ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref>, which maintains state keeping track of the opened CDF data. Unlike the Affyio internal representation the Biolib affyio CDF methods represent a unified layout for Affymetrix chips. Basically every probeset can return the name, probe values (PM, MM) and QC. Loading all other information is trivial, as Affyio makes it available - but not implemented here, at this point.</para><para><simplesect kind="note"><para>FIXME: XDA format not tested</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cdffilename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>points to a valid Affy CDF file (textual or XDA binary)</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer to <ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref></para></simplesect>
+<simplesect kind="see"><para>close_cdffile </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="284" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="283" bodyend="315"/>
+        <references refid="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" compoundref="biolib__affyio_8h" startline="109">CDFOBJECT::cols</references>
+        <references refid="structCDFOBJECT_1993e69986808f9a9c7e35dfd7e170721" compoundref="biolib__affyio_8h" startline="101">CDFOBJECT::id</references>
+        <references refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" compoundref="biolib__affyio_8h" startline="103">CDFOBJECT::isText</references>
+        <references refid="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" compoundref="biolib__affyio_8h" startline="111">CDFOBJECT::rows</references>
+        <references refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" compoundref="biolib__affyio_8h" startline="105">CDFOBJECT::text</references>
+        <references refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" compoundref="biolib__affyio_8h" startline="107">CDFOBJECT::xda</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g1f63b6ba4ec2c507f3635eee01ae81b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void close_cdffile</definition>
+        <argsstring>(CDFOBJECT *cdfobject)</argsstring>
+        <name>close_cdffile</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="319" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="318" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long cdf_num_probesets</definition>
+        <argsstring>(CDFOBJECT *cdfobject)</argsstring>
+        <name>cdf_num_probesets</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>number of probesets (units*blocks) including QC units </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="334" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="333" bodyend="348"/>
+        <references refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" compoundref="biolib__affyio_8h" startline="103">CDFOBJECT::isText</references>
+        <references refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" compoundref="biolib__affyio_8h" startline="105">CDFOBJECT::text</references>
+        <references refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" compoundref="biolib__affyio_8h" startline="107">CDFOBJECT::xda</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref> *</type>
+        <definition>CDFPROBESET* cdf_probeset_info</definition>
+        <argsstring>(CDFOBJECT *cdfobject, unsigned int probeset)</argsstring>
+        <name>cdf_probeset_info</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probeset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref> related to probeset number </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="354" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="353" bodyend="356"/>
+        <references refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" compoundref="biolib__affyio_8h" startline="113">CDFOBJECT::probeset</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref> *</type>
+        <definition>CDFPROBE* cdf_pmprobe_info</definition>
+        <argsstring>(CDFOBJECT *cdfobject, unsigned int probeset, unsigned int probe)</argsstring>
+        <name>cdf_pmprobe_info</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probeset</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref> related to probe in probeset </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="362" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="361" bodyend="364"/>
+        <references refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" compoundref="biolib__affyio_8h" startline="91">CDFPROBESET::pm</references>
+        <references refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" compoundref="biolib__affyio_8h" startline="113">CDFOBJECT::probeset</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref> *</type>
+        <definition>CDFPROBE* cdf_mmprobe_info</definition>
+        <argsstring>(CDFOBJECT *cdfobject, unsigned int probeset, unsigned int probe)</argsstring>
+        <name>cdf_mmprobe_info</name>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probeset</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref> related to probe in probeset </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="370" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="369" bodyend="372"/>
+        <references refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" compoundref="biolib__affyio_8h" startline="93">CDFPROBESET::mm</references>
+        <references refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" compoundref="biolib__affyio_8h" startline="113">CDFOBJECT::probeset</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g8187b62e9e398567705c7332318f2311" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double cel_pm</definition>
+        <argsstring>(CELOBJECT *celobject, CDFOBJECT *cdfobject, unsigned int probeset, unsigned int probe)</argsstring>
+        <name>cel_pm</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>celobject</declname>
+        </param>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probeset</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>FIXME: in progress...</para></simplesect>
+<simplesect kind="return"><para>PM value (perfect match) of the probe number in probeset; -1 on error </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="381" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="380" bodyend="388"/>
+        <references refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" compoundref="biolib__affyio_8c" startline="138" endline="141">cel_intensity_xy</references>
+        <references refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" compoundref="biolib__affyio_8h" startline="91">CDFPROBESET::pm</references>
+        <references refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" compoundref="biolib__affyio_8h" startline="113">CDFOBJECT::probeset</references>
+        <references refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" compoundref="biolib__affyio_8h" startline="76">CDFPROBE::x</references>
+        <references refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" compoundref="biolib__affyio_8h" startline="78">CDFPROBE::y</references>
+      </memberdef>
+      <memberdef kind="function" id="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double cel_mm</definition>
+        <argsstring>(CELOBJECT *celobject, CDFOBJECT *cdfobject, unsigned int probeset, unsigned int probe)</argsstring>
+        <name>cel_mm</name>
+        <param>
+          <type><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref> *</type>
+          <declname>celobject</declname>
+        </param>
+        <param>
+          <type><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref> *</type>
+          <declname>cdfobject</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probeset</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>probe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MM value (mismatch) of the probe number in probeset; -1 on error </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" line="394" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c" bodystart="393" bodyend="401"/>
+        <references refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" compoundref="biolib__affyio_8c" startline="138" endline="141">cel_intensity_xy</references>
+        <references refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" compoundref="biolib__affyio_8h" startline="93">CDFPROBESET::mm</references>
+        <references refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" compoundref="biolib__affyio_8h" startline="113">CDFOBJECT::probeset</references>
+        <references refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" compoundref="biolib__affyio_8h" startline="76">CDFPROBE::x</references>
+        <references refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" compoundref="biolib__affyio_8h" startline="78">CDFPROBE::y</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;R.h&gt;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>R&apos;s<sp/>Free<sp/>function<sp/>only</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="biolib__affyio_8h" kindref="compound">biolib_affyio.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" refkind="member"><highlight class="normal"><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*<ref refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" kindref="member">open_celfile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*celfilename)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*celobject<sp/>=<sp/>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*)malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref>));</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(celobject)<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(celobject,0,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref>));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(celobject-&gt;<ref refid="structCELOBJECT_1b358171dd75611b28e38e25150ea9e7f" kindref="member" tooltip="Should be &amp;#39;[CEL]&amp;#39;.">id</ref>,</highlight><highlight class="stringliteral">&quot;[CEL]&quot;</highlight><highlight class="normal">,6);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>celobject-&gt;<ref refid="structCELOBJECT_1b14fd38d4316f7318e8946dea858cade" kindref="member" tooltip="Points to CEL array.">cel</ref><sp/>=<sp/>read_cel_file(celfilename,<sp/>1);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>celobject;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" kindref="member">close_celfile</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>CEL<sp/>*cel<sp/>=<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>Free(cel-&gt;header.cdfName);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>Free(cel-&gt;header.DatHeader);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>Free(cel-&gt;header.Algorithm);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>Free(cel-&gt;header.AlgorithmParameters);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>Free(cel-&gt;intensities);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>Free(cel-&gt;stddev);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>Free(cel-&gt;npixels);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>Free(cel-&gt;masks_x);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>Free(cel-&gt;masks_y);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>Free(cel-&gt;outliers_x);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>Free(cel-&gt;outliers_y);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>Free(cel);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(object-&gt;<ref refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" kindref="member" tooltip="Masked indices.">masks</ref><sp/>!=<sp/>NULL)<sp/>{<sp/>free(object-&gt;<ref refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" kindref="member" tooltip="Masked indices.">masks</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(object-&gt;<ref refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" kindref="member" tooltip="Outlier indices.">outliers</ref><sp/>!=<sp/>NULL)<sp/>{<sp/>free(object-&gt;<ref refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" kindref="member" tooltip="Outlier indices.">outliers</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>free(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g5a5e1cedbca833799fd694889d80e3ed" kindref="member">cel_num_cols</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.cols;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" kindref="member">cel_num_rows</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.rows;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="group__affyio_1ge769422d05568d232588cc6e1645215e" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1ge769422d05568d232588cc6e1645215e" kindref="member">cel_num_masks</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;nmasks*2;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g1865b75aa7182d43ef45423e47d3cb56" kindref="member">cel_num_outliers</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;noutliers*2;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="group__affyio_1g282def666156d398b53da92254becd70" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g282def666156d398b53da92254becd70" kindref="member">cel_size</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.rows<sp/>*<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.cols;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g7db7f48cbb83a096a91d3490c657171e" kindref="member">cel_num_intensities</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.rows<sp/>*<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;header.cols;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g9ab144693752d1ceea8bd113f1d01de4" kindref="member">cel_intensity</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>index)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;intensities[index];</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kindref="member">cel_intensity_xy</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>y)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;intensities[y*<ref refid="group__affyio_1gdeb210535bd0b0071bba4ea92002da0a" kindref="member">cel_num_rows</ref>(</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)+x];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<ref refid="group__affyio_1gd7cef7708c7d6e8956852fdcce19c214" kindref="member">cel_intensities</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;intensities;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154" refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1ge3af4a60c7f2e7713831ac1b4216b9e8" kindref="member">cel_stddev</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>index)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;stddev[index];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<ref refid="group__affyio_1gd3cf0aac8d280b75da899678537f1c18" kindref="member">cel_stddevs</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel-&gt;stddev;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" kindref="member">cel_mask</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>index)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/>CEL<sp/>*cel<sp/>=<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!object-&gt;<ref refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" kindref="member" tooltip="Masked indices.">masks</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;masks<sp/>=<sp/>malloc(cel-&gt;nmasks*2*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>cel-&gt;nmasks;<sp/>i++){</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;masks[i]<sp/>=<sp/>(int)cel-&gt;masks_x[i];</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>object-&gt;<ref refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" kindref="member" tooltip="Masked indices.">masks</ref>[cel-&gt;nmasks<sp/>+<sp/>i]<sp/>=<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)cel-&gt;masks_y[i];</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;masks[index];</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192" refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" kindref="member">cel_outlier</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*</highlight><highlight class="keywordtype">object</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>index)</highlight></codeline>
+<codeline lineno="193"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/>CEL<sp/>*cel<sp/>=<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;cel;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!object-&gt;<ref refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" kindref="member" tooltip="Outlier indices.">outliers</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;outliers<sp/>=<sp/>malloc(cel-&gt;noutliers*2*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>cel-&gt;noutliers;<sp/>i++){</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;outliers[i]<sp/>=<sp/>(int)cel-&gt;outliers_x[i];</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>object-&gt;<ref refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" kindref="member" tooltip="Outlier indices.">outliers</ref>[cel-&gt;noutliers<sp/>+<sp/>i]<sp/>=<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)cel-&gt;outliers_y[i];</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-&gt;outliers[index];</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>=========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>cdf_alloc_probesets(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref><sp/>=<sp/>malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref>)*<ref refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kindref="member">cdf_num_probesets</ref>(cdfobject));<sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/>memset(cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>,0,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref>));</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/>*<sp/>Fill<sp/>the<sp/>structures<sp/>that<sp/>keep<sp/>track<sp/>of<sp/>probesets<sp/>and<sp/>probes</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>cdf_calc_text_probe_refs(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/>cdf_text<sp/>my_cdf;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/>memcpy(&amp;my_cdf,&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(cdf_text));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref><sp/>*probeset<sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,j,k,l;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>my_cdf.header.numberofunits;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j<sp/>&lt;<sp/>my_cdf.units[i].numberblocks;<sp/>j++)<sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref><sp/>*pset<sp/>=<sp/>&amp;probeset[i];</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>here<sp/>we<sp/>copy<sp/>the<sp/>probeset<sp/>name:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>strncpy(pset-&gt;<ref refid="structCDFPROBESET_151fea0f7c5d34a73c89c01cb19e07aa8" kindref="member" tooltip="Name of probeset.">name</ref>,my_cdf.units[i].blocks[j].name,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(pset-&gt;<ref refid="structCDFPROBESET_151fea0f7c5d34a73c89c01cb19e07aa8" kindref="member" tooltip="Name of probeset.">name</ref>)-1);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get<sp/>the<sp/>number<sp/>of<sp/>probes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cells<sp/>=<sp/>my_cdf.units[i].blocks[j].num_cells;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pset-&gt;<ref refid="structCDFPROBESET_1bd31ee25715f5f6886c78110e7ddfdc7" kindref="member" tooltip="Is quality control?">isQC</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pset-&gt;<ref refid="structCDFPROBESET_12663dd2ff7e798cc06ed1e7ac9f5153f" kindref="member" tooltip="Number of pm probes.">pm_num</ref><sp/>=<sp/>cells/2;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pset-&gt;<ref refid="structCDFPROBESET_1473cce73f0905569b1f5249bd36c00d6" kindref="member" tooltip="Number of mm probes.">mm_num</ref><sp/>=<sp/>cells/2;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pset-&gt;<ref refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" kindref="member" tooltip="pm index array">pm</ref><sp/>=<sp/>malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref>)*pset-&gt;<ref refid="structCDFPROBESET_12663dd2ff7e798cc06ed1e7ac9f5153f" kindref="member" tooltip="Number of pm probes.">pm_num</ref>);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pset-&gt;<ref refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" kindref="member" tooltip="mm index array (when available)">mm</ref><sp/>=<sp/>malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref>)*pset-&gt;<ref refid="structCDFPROBESET_1473cce73f0905569b1f5249bd36c00d6" kindref="member" tooltip="Number of mm probes.">mm_num</ref>);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="239"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>assuming<sp/>even<sp/>cells<sp/>are<sp/>PM<sp/>and<sp/>odd<sp/>cells<sp/>are<sp/>MM</highlight></codeline>
+<codeline lineno="240"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(k=0;<sp/>k<sp/>&lt;<sp/>cells/2;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CDFPROBE<sp/>*pm<sp/>=<sp/>&amp;pset-&gt;pm[k];</highlight></codeline>
+<codeline lineno="242"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CDFPROBE<sp/>*mm<sp/>=<sp/>&amp;pset-&gt;mm[k];</highlight></codeline>
+<codeline lineno="243"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pm-&gt;x<sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2].x;</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pm-&gt;y<sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2].y;</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm-&gt;x<sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2+1].x;</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm-&gt;y<sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2+1].y;</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assuming<sp/>PM<sp/>always<sp/>sits<sp/>above<sp/>an<sp/>MM<sp/>cel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k<sp/>&lt;<sp/>cells/2;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*pm<sp/>=<sp/>&amp;pset-&gt;<ref refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" kindref="member" tooltip="pm index array">pm</ref>[k];</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*mm<sp/>=<sp/>&amp;pset-&gt;<ref refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" kindref="member" tooltip="mm index array (when available)">mm</ref>[k];</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pm-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref><sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2].x;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref><sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2].y;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref><sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2+1].x;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref><sp/>=<sp/>my_cdf.units[i].blocks[j].probes[k*2+1].y;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pm-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref>!=mm-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref>)<sp/>{<sp/>error(</highlight><highlight class="stringliteral">&quot;PM<sp/>cel<sp/>does<sp/>not<sp/>sit<sp/>above<sp/>MM<sp/>cel&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref><sp/>&gt;<sp/>mm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>swap<sp/>=<sp/>pm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref>;<sp/>pm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref><sp/>=<sp/>mm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref>;<sp/>mm-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref><sp/>=<sp/>swap;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283" refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" refkind="member"><highlight class="normal"><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*<ref refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kindref="member">open_cdffile</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cdffilename)</highlight></codeline>
+<codeline lineno="284"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject<sp/>=<sp/>(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*)malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref>));</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdfobject)<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(cdfobject,0,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref>));</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(cdfobject-&gt;<ref refid="structCDFOBJECT_1993e69986808f9a9c7e35dfd7e170721" kindref="member" tooltip="Should be &amp;#39;[CDF]&amp;#39;.">id</ref>,</highlight><highlight class="stringliteral">&quot;[CDF]&quot;</highlight><highlight class="normal">,6);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isTextCDFFile(cdffilename))<sp/>{</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" kindref="member" tooltip="Is this a textual file?">isText</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!read_cdf_text(cdffilename,<sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(cdfobject);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" kindref="member" tooltip="Chip cols.">cols</ref><sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>.header.cols;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" kindref="member" tooltip="Chip rows.">rows</ref><sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>.header.rows;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdf_alloc_probesets(cdfobject);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdf_calc_text_probe_refs(cdfobject);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(check_cdf_xda(cdffilename))<sp/>{</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!read_cdf_xda(cdffilename,&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(cdfobject);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1a6ad3312dfe6d1472697f0c778832c96" kindref="member" tooltip="Chip cols.">cols</ref><sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>.header.cols;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1c5ea98674ac15fa4e2e2dd7e020415aa" kindref="member" tooltip="Chip rows.">rows</ref><sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>.header.rows;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdf_alloc_probesets(cdfobject);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>cdfobject;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>close_cdffile(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject)</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdfobject)<sp/>{</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>free(cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdfobject-&gt;<ref refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" kindref="member" tooltip="Is this a textual file?">isText</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dealloc_cdf_text(&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dealloc_cdf_xda(&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333" refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" refkind="member"><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kindref="member">cdf_num_probesets</ref>(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject)</highlight></codeline>
+<codeline lineno="334"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>probesets<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdfobject-&gt;<ref refid="structCDFOBJECT_1c34fbb34f798a908b40c69f617c6f8a0" kindref="member" tooltip="Is this a textual file?">isText</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>probesets<sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>.header.NumQCUnits;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,j;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>.header.numberofunits;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>probesets<sp/>+=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_1aef1024b9f65a16c41e354e4a9e822dd" kindref="member" tooltip="Affyio internal reference.">text</ref>.units[i].numberblocks;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>probesets<sp/>=<sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>.header.n_units<sp/>+</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cdfobject-&gt;<ref refid="structCDFOBJECT_100c441f79ac3a14a181f272a6eec040a" kindref="member" tooltip="Affyio internal reference.">xda</ref>.header.n_qc_units;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>probesets;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353" refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" refkind="member"><highlight class="normal"><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref><sp/>*<ref refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" kindref="member">cdf_probeset_info</ref>(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probeset)</highlight></codeline>
+<codeline lineno="354"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>[probeset];</highlight></codeline>
+<codeline lineno="356"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361" refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" refkind="member"><highlight class="normal"><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*<ref refid="group__affyio_1g99bf90830b9aacc5dcba5aefbbdbdb75" kindref="member">cdf_pmprobe_info</ref>(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probeset,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probe)</highlight></codeline>
+<codeline lineno="362"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>[probeset].<ref refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" kindref="member" tooltip="pm index array">pm</ref>[probe];</highlight></codeline>
+<codeline lineno="364"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369" refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" refkind="member"><highlight class="normal"><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*<ref refid="group__affyio_1gdd05ab61daab9fdc5b30ae6868bfc904" kindref="member">cdf_mmprobe_info</ref>(<ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probeset,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probe)</highlight></codeline>
+<codeline lineno="370"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>[probeset].<ref refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" kindref="member" tooltip="mm index array (when available)">mm</ref>[probe];</highlight></codeline>
+<codeline lineno="372"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380" refid="group__affyio_1g8187b62e9e398567705c7332318f2311" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kindref="member">cel_pm</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*celobject,<sp/><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probeset,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probe)</highlight></codeline>
+<codeline lineno="381"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref><sp/>*pset<sp/>=<sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>[probeset];</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pset)<sp/>{</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*p<sp/>=<sp/>&amp;pset-&gt;<ref refid="structCDFPROBESET_138e8346098d992c3d6a1e5058f972e08" kindref="member" tooltip="pm index array">pm</ref>[probe];</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kindref="member">cel_intensity_xy</ref>(celobject,<sp/>p-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref>,<sp/>p-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref>);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="388"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393" refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" refkind="member"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" kindref="member">cel_mm</ref>(<ref refid="structCELOBJECT" kindref="compound">CELOBJECT</ref><sp/>*celobject,<sp/><ref refid="structCDFOBJECT" kindref="compound">CDFOBJECT</ref><sp/>*cdfobject,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probeset,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probe)</highlight></codeline>
+<codeline lineno="394"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><ref refid="structCDFPROBESET" kindref="compound">CDFPROBESET</ref><sp/>*pset<sp/>=<sp/>&amp;cdfobject-&gt;<ref refid="structCDFOBJECT_1e1deedfaa491466d3f11454e824b0634" kindref="member" tooltip="Pointer to probeset info array.">probeset</ref>[probeset];</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pset)<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCDFPROBE" kindref="compound">CDFPROBE</ref><sp/>*p<sp/>=<sp/>&amp;pset-&gt;<ref refid="structCDFPROBESET_17020ad7304aed0f0e4382538ee0d6dbd" kindref="member" tooltip="mm index array (when available)">mm</ref>[probe];</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__affyio_1gfc3ec20165145aee22975cbcf88e65c8" kindref="member">cel_intensity_xy</ref>(celobject,<sp/>p-&gt;<ref refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" kindref="member" tooltip="x coordinate on chip">x</ref>,<sp/>p-&gt;<ref refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" kindref="member" tooltip="y coordinate on chip">y</ref>);</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="401"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.c"/>
+  </compounddef>
+</doxygen>

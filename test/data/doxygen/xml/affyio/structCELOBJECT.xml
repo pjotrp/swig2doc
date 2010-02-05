@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="structCELOBJECT" kind="struct" prot="public">
+    <compoundname>CELOBJECT</compoundname>
+    <includes refid="biolib__affyio_8h" local="no">biolib_affyio.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCELOBJECT_1b358171dd75611b28e38e25150ea9e7f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CELOBJECT::id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>id</name>
+        <briefdescription>
+<para>Should be &apos;[CEL]&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="48" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" compoundref="biolib__affyio_8c" startline="33" endline="42">open_celfile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCELOBJECT_1b14fd38d4316f7318e8946dea858cade" prot="public" static="no" mutable="no">
+        <type>CEL *</type>
+        <definition>CEL* CELOBJECT::cel</definition>
+        <argsstring></argsstring>
+        <name>cel</name>
+        <briefdescription>
+<para>Points to CEL array. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="50" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="50" bodyend="-1"/>
+        <referencedby refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" compoundref="biolib__affyio_8c" startline="33" endline="42">open_celfile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" prot="public" static="no" mutable="no">
+        <type>short *</type>
+        <definition>short* CELOBJECT::masks</definition>
+        <argsstring></argsstring>
+        <name>masks</name>
+        <briefdescription>
+<para>Masked indices. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="52" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="group__affyio_1gdaa8c2278ea72610bd70d4c173ec0b47" compoundref="biolib__affyio_8c" startline="172" endline="185">cel_mask</referencedby>
+        <referencedby refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" compoundref="biolib__affyio_8c" startline="51" endline="75">close_celfile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCELOBJECT_1d271f00945113340ca05abcd2e436273" prot="public" static="no" mutable="no">
+        <type>short *</type>
+        <definition>short* CELOBJECT::outliers</definition>
+        <argsstring></argsstring>
+        <name>outliers</name>
+        <briefdescription>
+<para>Outlier indices. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="54" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="group__affyio_1ge02a8f206a50fae1ba9dcd4b2529cf1c" compoundref="biolib__affyio_8c" startline="192" endline="205">cel_outlier</referencedby>
+        <referencedby refid="group__affyio_1g403028c9da15f621f5edef9fc9ab3128" compoundref="biolib__affyio_8c" startline="51" endline="75">close_celfile</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>State object - keeps track of the opened CEL file </para>    </detaileddescription>
+    <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="46" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="46" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structCELOBJECT_1b14fd38d4316f7318e8946dea858cade" prot="public" virt="non-virtual"><scope>CELOBJECT</scope><name>cel</name></member>
+      <member refid="structCELOBJECT_1b358171dd75611b28e38e25150ea9e7f" prot="public" virt="non-virtual"><scope>CELOBJECT</scope><name>id</name></member>
+      <member refid="structCELOBJECT_1ca42f996dee49e8bd435a3d1107643c0" prot="public" virt="non-virtual"><scope>CELOBJECT</scope><name>masks</name></member>
+      <member refid="structCELOBJECT_1d271f00945113340ca05abcd2e436273" prot="public" virt="non-virtual"><scope>CELOBJECT</scope><name>outliers</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

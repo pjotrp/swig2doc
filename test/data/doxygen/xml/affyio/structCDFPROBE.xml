@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="structCDFPROBE" kind="struct" prot="public">
+    <compoundname>CDFPROBE</compoundname>
+    <includes refid="biolib__affyio_8h" local="no">biolib_affyio.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CDFPROBE::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+<para>x coordinate on chip </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="76" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" compoundref="biolib__affyio_8c" startline="393" endline="401">cel_mm</referencedby>
+        <referencedby refid="group__affyio_1g8187b62e9e398567705c7332318f2311" compoundref="biolib__affyio_8c" startline="380" endline="388">cel_pm</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int CDFPROBE::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+<para>y coordinate on chip </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="78" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="group__affyio_1g15cd6ddee28c8f82d7d38cfc7237a4c2" compoundref="biolib__affyio_8c" startline="393" endline="401">cel_mm</referencedby>
+        <referencedby refid="group__affyio_1g8187b62e9e398567705c7332318f2311" compoundref="biolib__affyio_8c" startline="380" endline="388">cel_pm</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Probe description </para>    </detaileddescription>
+    <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" line="74" bodyfile="/mnt/auto/flash/git/opensource/biolib/src/clibs/affyio/src/biolib_affyio.h" bodystart="74" bodyend="80"/>
+    <listofallmembers>
+      <member refid="structCDFPROBE_10ece227b8a48a6bf85de35864122eec4" prot="public" virt="non-virtual"><scope>CDFPROBE</scope><name>x</name></member>
+      <member refid="structCDFPROBE_14eb6264af5b8424b4eeeea54bbd855ce" prot="public" virt="non-virtual"><scope>CDFPROBE</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

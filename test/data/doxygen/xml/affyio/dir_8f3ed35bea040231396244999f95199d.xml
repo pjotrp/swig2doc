@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.6">
+  <compounddef id="dir_8f3ed35bea040231396244999f95199d" kind="dir">
+    <compoundname>src/clibs/</compoundname>
+    <innerdir refid="dir_9a91fc99176b0dfce3e6abbf8c59e840">src/clibs/affyio/</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/mnt/auto/flash/git/opensource/biolib/src/clibs/"/>
+  </compounddef>
+</doxygen>
