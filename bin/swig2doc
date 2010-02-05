@@ -1,0 +1,59 @@
+#! /usr/bin/ruby
+#
+#  SWIG2DOC
+#
+#  Convert SWIG output to documentation
+#
+#  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+#
+
+PROG_VERSION='swig2doc 0.02 (February 2010)'
+
+srcpath=File.dirname(File.dirname(__FILE__))
+libpath=File.dirname(srcpath)+'/lib'
+$: << libpath
+
+require 'optparse'
+require 'ostruct'
+
+print "#{PROG_VERSION}\n"
+
+usage = <<USAGE
+
+    Convert SWIG XML to documentation (primarily HTML). Also
+		allows for injecting info from Doxygen XML output. See
+		http://biolib.open-bio.orb/
+
+    Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+        
+  usage:
+
+    Use --help for more information
+
+USAGE
+
+print(usage) if ARGV.size == 0
+
+$options = OpenStruct.new()
+
+opts = OptionParser.new do |opts|
+  opts.on_tail("-h", "--help", "Print this message") {
+    print(usage)
+    print(opts)
+    print <<EXAMPLE
+    
+Examples:
+
+    swig2doc
+    
+EXAMPLE
+    exit()
+  }
+  # opts.on '--seq=fn', 'Sequence information (UTR in FASTA)' do | fn |
+  #  $options.seqinfo_fn = fn
+  #end
+end
+opts.parse!(ARGV)
+
+require 'libxml'
+
