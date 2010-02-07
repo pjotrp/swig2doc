@@ -35,6 +35,7 @@ USAGE
 print(usage) if ARGV.size == 0
 
 $options = OpenStruct.new()
+$options.outdir = './swig2doc'
 
 opts = OptionParser.new do |opts|
   opts.on_tail("-h", "--help", "Print this message") {
@@ -56,4 +57,11 @@ end
 opts.parse!(ARGV)
 
 require 'libxml'
+require 'sourcetree'
+require 'input/swigxmlparser'
 
+tree = SourceTree.new
+
+ARGV.each do | fn |
+  tree.push SwigXMLParser.new(fn).objects
+end
