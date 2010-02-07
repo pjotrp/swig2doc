@@ -15,6 +15,9 @@ class TestSwigXMLParser < Test::Unit::TestCase
 
   def test_reader
     objects = @xml.objects
+    assert_equal(29,objects.num_functions)
+    assert_equal(145,objects.num_vars)
+    assert_equal(20,objects.num_structs)
   end
  
 end

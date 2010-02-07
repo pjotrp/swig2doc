@@ -22,7 +22,7 @@ class SwigXMLParser
       end
       p @xml.name
       object = CDecl::parse(@xml.read_inner_xml)
-      @xml.read
+      @xml.next
     end
   end
 
@@ -31,7 +31,9 @@ class SwigXMLParser
 end
 
 module CDecl
+  include LibXML
   def CDecl.parse buf
-    print buf
+    p [buf]
+    xml = XML::Parser.string(buf.to_s)
   end
 end
