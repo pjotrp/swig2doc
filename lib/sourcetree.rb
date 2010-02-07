@@ -1,4 +1,5 @@
 
-class SourceTree
+class SourceTree < Array
+
 
 end

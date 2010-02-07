@@ -56,12 +56,15 @@ EXAMPLE
 end
 opts.parse!(ARGV)
 
-require 'libxml'
 require 'sourcetree'
 require 'input/swigxmlparser'
+require 'output/htmlwriter'
 
 tree = SourceTree.new
 
 ARGV.each do | fn |
   tree.push SwigXMLParser.new(fn).objects
 end
+
+HtmlWriter.new(tree).write
+
