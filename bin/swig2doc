@@ -15,6 +15,7 @@ $: << libpath
 
 require 'optparse'
 require 'ostruct'
+require 'rubygems'
 
 print "#{PROG_VERSION}\n"
 
