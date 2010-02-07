@@ -17,12 +17,14 @@ class SwigXMLParser
     #   p @xml['addr']
     # end
     while @xml.read_state!=XML::Reader::MODE_EOF and @xml.read_state!=XML::Reader::MODE_ERROR
-      while @xml.name != 'cdecl'
+      while @xml.name != 'cdecl' and @xml.name != 'class'
         @xml.read
       end
+      name = @xml.name
+      @xml.read
+      @xml.read
       p @xml.name
-      object = CDecl::parse(@xml.read_inner_xml)
-      @xml.next
+      CDecl.parse(@xml.expand.to_s)
     end
   end
 
@@ -32,8 +34,14 @@ end
 
 module CDecl
   include LibXML
+
+  # A buffer gets put in consisting of an attribute list and 
+  # attributes. These get returned in a Hash of attributes.
   def CDecl.parse buf
-    p [buf]
-    xml = XML::Parser.string(buf.to_s)
+    print buf
+    print "\n----\n"
+    doc = XML::Parser.string(buf.to_s).parse
+    # attributes = doc.find("/attributelist")
+    # p attributes
   end
 end
