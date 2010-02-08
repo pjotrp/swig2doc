@@ -27,6 +27,10 @@ class SwigXMLParser
     if !swig?
       raise "#{@fn} is not a SWIG XML document!"
     end
+    xml = @reader.xml
+    element = @reader.get_element('attributelist')
+    header = attributelist(reader.xml.expand)
+    set_language(header['infile'])
   end
 
   def objects
@@ -52,6 +56,11 @@ class SwigXMLParser
     h
   end
 
+  def set_language name
+    @language = :perl if name =~ /perl/
+    @language = :python if name =~ /python/
+    @language = :ruby if name =~ /ruby/
+  end
 end
 
 module CDecl
