@@ -2,24 +2,34 @@
 $:.unshift '/var/lib/gems/1.8/gems/libxml-ruby-1.1.3/lib/'
 
 require 'libxml'
+require 'input/xmleasyreader'
 
 class SwigXMLParser
+
+  attr_reader :reader
 
   include LibXML
 
   def initialize fn
     print XML::LIBXML_VERSION
     print "Reading #{fn}\n"
-    @xml = XML::Reader.file(fn) 
-    # read top
-    @xml.read
-    if @xml.name != 'top'
-      raise "#{fn} is not a SWIG XML document!"
+    @fn = fn
+    @reader = XMLEasyReader.new(fn)
+  end
+
+  # Tell if this is a SWIG document - this has to be called before 
+  # any other reads!
+  def swig?
+    @reader.get_element.name == 'top'
+  end
+
+  def parse
+    if !swig?
+      raise "#{@fn} is not a SWIG XML document!"
     end
-    # if @xml.has_attributes?
-    #   p @xml['addr']
-    # end
-    # while @xml.read_state!=XML::Reader::MODE_EOF and @xml.read_state!=XML::Reader::MODE_ERROR
+    node = @reader.find_element('attributelist')
+    header = parse_list(@reader,'attributelist')
+
     while @xml.read_state==1
       while @xml.name != 'cdecl' and @xml.name != 'class'
         @xml.read
