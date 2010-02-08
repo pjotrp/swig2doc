@@ -1,38 +1,34 @@
 
 class XMLEasyElement
-  attr_accessor :name, :text
+  attr_accessor :name
 end
 
 class XMLEasyReader
-
-  attr_reader :xml
 
   include LibXML
 
   def initialize fn
     @fn = fn
-    @xml = XML::Reader.file(fn) 
+    @reader = XML::Reader.file(fn) 
   end
 
-  # Get the element and return XMLEasyReader
-  def get_element
+  # Get the element and return readerEasyReader. If name is specified it 
+  # will search for the first match
+  def get_element name=nil
     e = XMLEasyElement.new()
-    @xml.read
-    # make sure the node type is an element
-    raise 'Element problem' if @xml.node_type != XML::Reader::TYPE_ELEMENT
-    e.name = @xml.name
-    @xml.read
-    # raise 'Element problem' if @xml.node_type != XML::Reader::TYPE_TEXT
-    e.text = @xml.value
+    begin
+      # p [name, @reader.name, @reader.node_type]
+      if @reader.node_type == XML::Reader::TYPE_ELEMENT
+        break if name==nil 
+        break if @reader.name==name 
+      end
+      ok = @reader.read
+    end while ok==true
+    e.name = @reader.name
     e
   end
 
-  # Move to the position where node matches element name (start)
-  def find_node name
-    while ((e = get_element).name != name)
-      print e.name
-    end
-    e
+  def xml
+    @reader
   end
-
 end

@@ -10,17 +10,15 @@ require 'input/swigxmlparser'
 class TestSwigXMLParser < Test::Unit::TestCase
 
   def setup
-    @xml = SwigXMLParser.new(SWIGXML)
   end
 
   def test_attributelist
     xml = SwigXMLParser.new(SWIGXML)
     reader = xml.reader
     assert(xml.swig?)   # this tests get_element
-    element = reader.find_node('attributelist')
-    p element
-    p node.expand.string
-
+    element = reader.get_element('attributelist')
+    assert_equal('attributelist',element.name)
+    assert_equal("<attributelist id=\"2\" addr=\"b7cd59a8\">\n        <attribute name=\"outfile\" value=\"p",reader.xml.expand.to_s[0..80])
   end
 
   def test_reader
