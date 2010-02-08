@@ -29,14 +29,16 @@ class XMLEasyReader
     e
   end
 
-  # Find all elements matching regex
+  # Find all elements matching regex and returns the contained nodes as 
+  # a node
   def each_element_tree regex
     begin
       @reader.read # move pointer forward
       e = get_element
       break if e == nil
       if e.name =~ /#{regex}/
-        yield e.name, 'x'
+        get_element('attributelist')
+        yield e.name, @reader.expand
       end 
     end while e != nil
   end

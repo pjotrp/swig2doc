@@ -33,8 +33,12 @@ class SwigXMLParser
     header = attributelist(reader.xml.expand)
     set_language(header['infile'])
     @module = header['name']
-    @reader.each_element_tree("cdecl|class") do | type, h |
-      p [type, h]
+    # @reader.each_element_tree("cdecl|class") do | type, tree |
+    @reader.each_element_tree("cdecl|class") do | type, tree |
+      # print tree.to_s
+      h = attributelist(tree)
+      p h
+      # p [type, attributelist(tree)]
     end
   end
 
@@ -46,15 +50,23 @@ class SwigXMLParser
     h = {}
     node.each do | attribute |
       # p attribute
-      name = attribute['name']
-      if name
-        # h[name] = { :value => attribute['value'] }
-        h[name] = attribute['value']
-      # if attribute.is_list?
-      #   list[:parmlist] = parse_list(attribute,attributelist.fetch('parmlist/parm/attributelist')) 
-      # else
-      #   list[attribute['name']] = { :value => attribute['value'] }
-      # end
+      if attribute.child?
+        if attribute.name != 'parmlist'
+          raise "Error unknown type <#{attribute.name}>"
+        end
+        parameters = []
+        attribute.each do | parm |
+          parm.each do | attrs |
+            ps = attributelist(attrs)
+            parameters.push ps if ps != {}
+          end
+        end 
+        h['parmlist'] = parameters
+      else
+        name = attribute['name']
+        if name
+          h[name] = attribute['value']
+        end
       end
     end
     # p h
@@ -68,34 +80,4 @@ class SwigXMLParser
   end
 end
 
-module CDecl
-  include LibXML
 
-  # A buffer gets put in consisting of an attribute list and 
-  # attributes. These get returned in a Hash of attributes.
-  def CDecl.parse_attributelist node
-    # print node.to_s
-    # print "\n++++\n"
-    h = Hash.new
-    node = node.each do | attributelist |
-      attributelist.each do | attribute |
-        name = attribute.name
-        if name == 'attribute'
-          h[attribute['name']] = attribute['value']
-        elsif name == 'parlist'
-          attribute.each do | parm |
-            p parm
-          end
-        elsif name == 'text' or name == 'typescope'
-          next
-        else
-          raise 'Strange '+name
-        end
-      end
-    end
-    p h
-    print "\n----\n"
-    # attributes = node.find("/attributelist")
-    # p attributes
-  end
-end
