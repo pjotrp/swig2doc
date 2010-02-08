@@ -28,6 +28,7 @@ class TestSwigXMLParser < Test::Unit::TestCase
     xml = SwigXMLParser.new(SWIGXML)
     xml.parse
     assert_equal(:perl, xml.language)
+    assert_equal('affyio', xml.module)
 
     if false
       objects = @xml.objects

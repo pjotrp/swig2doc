@@ -6,7 +6,7 @@ require 'input/xmleasyreader'
 
 class SwigXMLParser
 
-  attr_reader :reader, :language
+  attr_reader :reader, :language, :module
 
   include LibXML
 
@@ -24,13 +24,18 @@ class SwigXMLParser
   end
 
   def parse
+    xml = @reader.xml
     if !swig?
       raise "#{@fn} is not a SWIG XML document!"
     end
-    xml = @reader.xml
+    # parse header
     element = @reader.get_element('attributelist')
     header = attributelist(reader.xml.expand)
     set_language(header['infile'])
+    @module = header['name']
+    @reader.each_element_tree("cdecl|class") do | type, h |
+      p [type, h]
+    end
   end
 
   def objects
