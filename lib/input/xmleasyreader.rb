@@ -31,4 +31,5 @@ class XMLEasyReader
   def xml
     @reader
   end
+
 end

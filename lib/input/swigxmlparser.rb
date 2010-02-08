@@ -6,7 +6,7 @@ require 'input/xmleasyreader'
 
 class SwigXMLParser
 
-  attr_reader :reader
+  attr_reader :reader, :language
 
   include LibXML
 
@@ -27,21 +27,31 @@ class SwigXMLParser
     if !swig?
       raise "#{@fn} is not a SWIG XML document!"
     end
-    node = @reader.find_element('attributelist')
-    header = parse_list(@reader,'attributelist')
-
-    while @xml.read_state==1
-      while @xml.name != 'cdecl' and @xml.name != 'class'
-        @xml.read
-      end
-      name = @xml.name
-      CDecl.parse_attributelist(@xml.expand)
-      @xml.next
-    end
   end
 
   def objects
   end
+
+  # Return a hash of attributes
+  def attributelist(node)
+    h = {}
+    node.each do | attribute |
+      # p attribute
+      name = attribute['name']
+      if name
+        # h[name] = { :value => attribute['value'] }
+        h[name] = attribute['value']
+      # if attribute.is_list?
+      #   list[:parmlist] = parse_list(attribute,attributelist.fetch('parmlist/parm/attributelist')) 
+      # else
+      #   list[attribute['name']] = { :value => attribute['value'] }
+      # end
+      end
+    end
+    # p h
+    h
+  end
+
 end
 
 module CDecl
