@@ -51,6 +51,7 @@ class SwigXMLParser
     node.each do | attribute |
       # p attribute
       if attribute.child?
+        next if ['typescope'].index(attribute.name)
         if attribute.name != 'parmlist'
           raise "Error unknown type <#{attribute.name}>"
         end
