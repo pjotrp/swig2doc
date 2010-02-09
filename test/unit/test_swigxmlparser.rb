@@ -31,7 +31,7 @@ class TestSwigXMLParser < Test::Unit::TestCase
     assert_equal('affyio', xml.modulename)
     assert_equal('affyio', cmodule.name)
     assert_equal(29,cmodule.functions.size)
-    assert_equal(145,cmodule.vars.size)
+    assert_equal(145,cmodule.variables.size)
     assert_equal(20,cmodule.structs.size)
     assert_equal(0,cmodule.classes.size)
   end
