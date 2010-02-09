@@ -3,10 +3,11 @@ $:.unshift '/var/lib/gems/1.8/gems/libxml-ruby-1.1.3/lib/'
 
 require 'libxml'
 require 'input/xmleasyreader'
+require 'cobj/cmodule'
 
 class SwigXMLParser
 
-  attr_reader :reader, :language, :module
+  attr_reader :reader, :language, :modulename
 
   include LibXML
 
@@ -24,6 +25,7 @@ class SwigXMLParser
   end
 
   def parse
+    objectlist = []
     xml = @reader.xml
     if !swig?
       raise "#{@fn} is not a SWIG XML document!"
@@ -32,17 +34,22 @@ class SwigXMLParser
     element = @reader.get_element('attributelist')
     header = attributelist(reader.xml.expand)
     set_language(header['infile'])
-    @module = header['name']
+    @modulename = header['name']
     # @reader.each_element_tree("cdecl|class") do | type, tree |
     @reader.each_element_tree("cdecl|class") do | type, tree |
       # print tree.to_s
       h = attributelist(tree)
-      p h
+      # p h
       # p [type, attributelist(tree)]
+      objectlist.push h
     end
+    objectlist
   end
 
-  def objects
+  # Parse the source code and return set of objects for the module
+  def cmodule
+    objectlist = parse
+    CModule.new(@modulename,objectlist)
   end
 
   # Return a hash of attributes
@@ -70,7 +77,6 @@ class SwigXMLParser
         end
       end
     end
-    # p h
     h
   end
 

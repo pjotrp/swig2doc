@@ -46,7 +46,7 @@ opts = OptionParser.new do |opts|
     
 Examples:
 
-    swig2doc
+    swig2doc test/data/swig/perl_affyio_wrap.xml 
     
 EXAMPLE
     exit()
@@ -64,7 +64,7 @@ require 'output/htmlwriter'
 tree = SourceTree.new
 
 ARGV.each do | fn |
-  tree.push SwigXMLParser.new(fn).objects
+  tree.push SwigXMLParser.new(fn).cmodule
 end
 
 HtmlWriter.new(tree).write
