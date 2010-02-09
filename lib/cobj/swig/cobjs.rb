@@ -26,6 +26,10 @@ class Cfunction
   def to_s
     @name
   end
+
+  def <=> obj
+    @name <=> obj.name
+  end
 end
 
 class Cstruct

@@ -57,6 +57,8 @@ EXAMPLE
 end
 opts.parse!(ARGV)
 
+exit(1) if ARGV.size == 0
+
 require 'sourcetree'
 require 'input/swigxmlparser'
 require 'output/htmlwriter'
@@ -67,5 +69,5 @@ ARGV.each do | fn |
   tree.push SwigXMLParser.new(fn).cmodule
 end
 
-HtmlWriter.new(tree).write
+HtmlWriter.new(tree).write($options.outdir)
 
