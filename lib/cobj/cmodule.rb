@@ -1,4 +1,4 @@
-require 'cobj/cobjs'
+require 'cobj/swig/cobjs'
 
 class CModule
 
