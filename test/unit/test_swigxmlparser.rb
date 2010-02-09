@@ -34,6 +34,11 @@ class TestSwigXMLParser < Test::Unit::TestCase
     assert_equal(145,cmodule.variables.size)
     assert_equal(20,cmodule.structs.size)
     assert_equal(0,cmodule.classes.size)
+  end
+
+  def test_functions
+    xml = SwigXMLParser.new(SWIGXML)
+    cmodule = xml.cmodule  # invokes parser
     function = cmodule.functions.first
     assert_equal("isTextCDFFile",function.name)
     assert_equal("int",function.type)

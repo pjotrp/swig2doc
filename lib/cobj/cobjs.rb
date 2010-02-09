@@ -1,3 +1,5 @@
+# This class turns SWIG generated raw data into a nice object structure.
+
 class Cvariable
   attr_reader :name, :type
   def initialize obj

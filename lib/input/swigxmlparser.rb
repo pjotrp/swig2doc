@@ -1,5 +1,5 @@
 
-$:.unshift '/var/lib/gems/1.8/gems/libxml-ruby-1.1.3/lib/'
+# $:.unshift '/var/lib/gems/1.8/gems/libxml-ruby-1.1.3/lib/'
 
 require 'libxml'
 require 'input/xmleasyreader'
