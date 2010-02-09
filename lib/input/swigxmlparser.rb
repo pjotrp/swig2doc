@@ -13,7 +13,7 @@ class SwigXMLParser
 
   def initialize fn
     print XML::LIBXML_VERSION
-    print "Reading #{fn}\n"
+    print " LibXML reading #{fn}\n"
     @fn = fn
     @reader = XMLEasyReader.new(fn)
   end

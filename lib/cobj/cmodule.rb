@@ -1,4 +1,4 @@
-
+require 'cobj/cobjs'
 
 class CModule
 
@@ -15,11 +15,11 @@ class CModule
   def convert_from_raw objects
     objects.each do | obj |
       if obj['kind'] == 'function'
-        @functions.push obj
+        @functions.push Cfunction.new(obj)
       elsif obj['kind'] == 'variable'
-        @variables.push obj
+        @variables.push Cvariable.new(obj)
       elsif obj['kind'] == 'struct'
-        @structs.push obj
+        @structs.push Cstruct.new(obj)
       else
         raise "Unknow type <#{obj['kind']}>"
       end
