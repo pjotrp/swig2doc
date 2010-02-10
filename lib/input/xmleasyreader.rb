@@ -1,6 +1,6 @@
 
 class XMLEasyElement
-  attr_accessor :name
+  attr_accessor :name, :attributes
 end
 
 class XMLEasyReader
@@ -26,6 +26,7 @@ class XMLEasyReader
       return nil if ok == false
     end while ok==true
     e.name = @reader.name
+    e.attributes = @reader[
     e
   end
 

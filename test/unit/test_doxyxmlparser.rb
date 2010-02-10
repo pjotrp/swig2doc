@@ -17,7 +17,7 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     reader = xml.reader
     assert(xml.doxygen?)   # this tests get_element implicitely
     element = reader.get_element('sectiondef')
-    assert_equal('function',element.attrib['kind'])
+    assert_equal('function',element.attributes['kind'])
     assert_equal("<sectiondef id=\"2\" addr=\"b7cd59a8\">\n        <attribute name=\"outfile\" value=\"p",reader.xml.expand.to_s[0..80])
   end
 
