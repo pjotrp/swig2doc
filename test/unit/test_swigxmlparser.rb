@@ -27,7 +27,7 @@ class TestSwigXMLParser < Test::Unit::TestCase
   def test_reader
     xml = SwigXMLParser.new(SWIGXML)
     cmodule = xml.cmodule  # invokes parser
-    assert_equal(:perl, xml.language)
+    assert_equal('perl', xml.language)
     assert_equal('affyio', xml.modulename)
     assert_equal('affyio', cmodule.name)
     assert_equal(29,cmodule.functions.size)

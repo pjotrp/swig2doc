@@ -81,9 +81,9 @@ class SwigXMLParser
   end
 
   def set_language name
-    @language = :perl if name =~ /perl/
-    @language = :python if name =~ /python/
-    @language = :ruby if name =~ /ruby/
+    @language = 'perl' if name =~ /perl/
+    @language = 'python' if name =~ /python/
+    @language = 'ruby' if name =~ /ruby/
   end
 end
 
