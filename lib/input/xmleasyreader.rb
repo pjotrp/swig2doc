@@ -13,7 +13,8 @@ class XMLEasyReader
   end
 
   # Get the element and return XML element (always start). If name is specified
-  # it will search for the first match. Returns nil when end of data
+  # it will search for the first match. Returns nil when end of data. It 
+  # also picks up the attributes of the element (if any)
   def get_element name=nil
     e = XMLEasyElement.new()
     begin
@@ -26,7 +27,12 @@ class XMLEasyReader
       return nil if ok == false
     end while ok==true
     e.name = @reader.name
-    e.attributes = @reader[
+    e.attributes = []
+    if @reader.has_attributes?
+      p "yes"
+      reader.move_to_first_attribute
+      reader.move_to_next_attribute
+    end
     e
   end
 
