@@ -31,9 +31,9 @@ class XMLEasyReader
     end while ok==true
     if ok==true
       e.name = @reader.name
-      p e
       e.attributes = get_attributes()
     end
+    p e
     e
   end
 
@@ -56,17 +56,15 @@ class XMLEasyReader
   def get_attributes
     h = {}
     if @reader.has_attributes?
-      p @reader.attribute_count
       if @reader.move_to_first_attribute == 1
-        p @reader.name
         h[@reader.name] = @reader.value
         while @reader.move_to_next_attribute == 1
-          p @reader.name
           h[@reader.name] = @reader.value
         end
       end
+      @reader.move_to_element # reset main pointer in libxml
     end
-    p h
+    # p h
     h
   end
 
