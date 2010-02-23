@@ -17,7 +17,7 @@ class XMLEasyReader
   # Get the element and return XML element (always start). If name is specified
   # it will search for the first match. Returns nil when end of data. It 
   # also picks up the attributes of the element (if any)
-  def get_element name=nil
+  def get_element name=nil, fetch_attributes=false
     e = XMLEasyElement.new()
     ok = nil
     begin
@@ -31,10 +31,15 @@ class XMLEasyReader
     end while ok==true
     if ok==true
       e.name = @reader.name
-      e.attributes = get_attributes()
+      e.attributes = get_attributes() if fetch_attributes
     end
     p e
     e
+  end
+
+  # Similar to get_element; fetches attributes automatically
+  def get_element_with_attributes name=nil
+    get_element(name,true)
   end
 
   # Find all elements matching regex and returns the contained nodes as 
