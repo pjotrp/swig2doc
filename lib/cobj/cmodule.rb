@@ -1,4 +1,3 @@
-require 'cobj/swig/cobjs'
 
 class CModule
 
@@ -9,22 +8,6 @@ class CModule
     @variables = []
     @classes   = []
     @structs   = []
-    convert_from_raw(objects)
   end
 
-  # Convert a simple list of objects (Hash/Array) as generated from SWIG XML
-  # into a OOP object hierarchy
-  def convert_from_raw objects
-    objects.each do | obj |
-      if obj['kind'] == 'function'
-        @functions.push Cfunction.new(obj)
-      elsif obj['kind'] == 'variable'
-        @variables.push Cvariable.new(obj)
-      elsif obj['kind'] == 'struct'
-        @structs.push Cstruct.new(obj)
-      else
-        raise "Unknow type <#{obj['kind']}>"
-      end
-    end
-  end
 end
