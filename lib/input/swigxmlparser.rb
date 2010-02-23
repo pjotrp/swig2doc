@@ -3,7 +3,7 @@
 
 require 'libxml'
 require 'input/xmleasyreader'
-require 'cobj/cmodule'
+require 'cobj/swig/swigcmodule'
 
 class SwigXMLParser
 
@@ -46,7 +46,7 @@ class SwigXMLParser
   # Parse the source code and return set of objects for the module
   def cmodule
     objectlist = parse
-    CModule.new(@modulename,objectlist)
+    SwigCModule.new(@modulename,objectlist)
   end
 
   # Return a hash of attributes
