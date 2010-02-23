@@ -1,6 +1,6 @@
 # This class turns SWIG generated raw data into a nice object structure.
 
-class Cvariable
+class SwigCvariable
   attr_reader :name, :type
   def initialize obj
     @name = obj['name']
@@ -8,10 +8,10 @@ class Cvariable
   end
 end
 
-class Cparameter < Cvariable
+class SwigCparameter < SwigCvariable
 end
 
-class Cfunction
+class SwigCfunction
   attr_reader :name, :type, :parameters
   def initialize obj
     @name = obj['name']
@@ -19,7 +19,7 @@ class Cfunction
     @type = obj['type']
     @parameters = []
     obj['parmlist'].each do | parameter |
-      @parameters.push Cparameter.new(parameter)
+      @parameters.push SwigCparameter.new(parameter)
     end
   end
 
@@ -32,7 +32,7 @@ class Cfunction
   end
 end
 
-class Cstruct
+class SwigCstruct
   def initialize obj
   end
 end
