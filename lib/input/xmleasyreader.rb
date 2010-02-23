@@ -19,22 +19,27 @@ class XMLEasyReader
   # also picks up the attributes of the element (if any)
   def get_element name=nil
     e = XMLEasyElement.new()
+    ok = nil
     begin
       # p [name, @reader.name, @reader.node_type]
       if @reader.node_type == XML::Reader::TYPE_ELEMENT
-        break if name==nil 
+        break if name==nil  # returns the next element
         break if @reader.name==name 
       end
       ok = @reader.read
       return nil if ok == false
     end while ok==true
-    e.name = @reader.name
-    e.attributes = get_attributes()
+    if ok==true
+      e.name = @reader.name
+      p e
+      e.attributes = get_attributes()
+    end
     e
   end
 
   # Find all elements matching regex and returns the contained nodes as 
-  # a node
+  # a node - this method is SWIG specific as it looks for an attributelist 
+  # element
   def each_element_tree regex
     begin
       @reader.read # move pointer forward
@@ -51,10 +56,14 @@ class XMLEasyReader
   def get_attributes
     h = {}
     if @reader.has_attributes?
-      # p @reader.move_to_first_attribute
-      # p @reader.name
-      while @reader.move_to_next_attribute == 1
+      p @reader.attribute_count
+      if @reader.move_to_first_attribute == 1
+        p @reader.name
         h[@reader.name] = @reader.value
+        while @reader.move_to_next_attribute == 1
+          p @reader.name
+          h[@reader.name] = @reader.value
+        end
       end
     end
     p h

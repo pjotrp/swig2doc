@@ -35,12 +35,9 @@ class SwigXMLParser
     header = attributelist(reader.xml.expand)
     set_language(header['infile'])
     @modulename = header['name']
-    # @reader.each_element_tree("cdecl|class") do | type, tree |
-    @reader.each_element_tree("cdecl|class") do | type, tree |
-      # print tree.to_s
+    # ---- Now find each cdecl|class and push a Hash of values
+    @reader.each_element_tree("cdecl") do | type, tree |
       h = attributelist(tree)
-      # p h
-      # p [type, attributelist(tree)]
       objectlist.push h
     end
     objectlist
