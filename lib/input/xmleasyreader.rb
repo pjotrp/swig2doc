@@ -1,6 +1,8 @@
 
 class XMLEasyElement
   attr_accessor :name, :attributes
+  def initialize
+  end
 end
 
 class XMLEasyReader
@@ -27,12 +29,7 @@ class XMLEasyReader
       return nil if ok == false
     end while ok==true
     e.name = @reader.name
-    e.attributes = []
-    if @reader.has_attributes?
-      p "yes"
-      reader.move_to_first_attribute
-      reader.move_to_next_attribute
-    end
+    e.attributes = get_attributes()
     e
   end
 
@@ -48,6 +45,20 @@ class XMLEasyReader
         yield e.name, @reader.expand
       end 
     end while e != nil
+  end
+
+  # Return attributes as a Hash
+  def get_attributes
+    h = {}
+    if @reader.has_attributes?
+      # p @reader.move_to_first_attribute
+      # p @reader.name
+      while @reader.move_to_next_attribute == 1
+        h[@reader.name] = @reader.value
+      end
+    end
+    p h
+    h
   end
 
   def xml
