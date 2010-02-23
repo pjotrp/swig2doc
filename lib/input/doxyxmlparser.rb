@@ -11,10 +11,12 @@ class DoxyXMLParser
 
   include LibXML
 
+  # Prepare and open a Doxygen XML file
   def initialize fn
     print XML::LIBXML_VERSION
     print " LibXML Doxygen reads #{fn}\n"
     @fn = fn
+    @language = 'C'
     @reader = XMLEasyReader.new(fn)
   end
 
@@ -24,13 +26,15 @@ class DoxyXMLParser
     @reader.get_element.name == 'doxygen'
   end
 
+  # Parse the Doxy XML and turn the information into a simple object list
   def parse
     objectlist = []
     xml = @reader.xml
     if !doxygen?
       raise "#{@fn} is not a Doxy XML document!"
     end
-    # parse header
+    element = reader.get_element_with_attributes('sectiondef')
+
     # element = @reader.get_element('attributelist')
     # header = attributelist(reader.xml.expand)
     # set_language(header['infile'])
@@ -52,11 +56,6 @@ class DoxyXMLParser
     # CModule.new(@modulename,objectlist)
   end
 
-  def set_language name
-    @language = 'perl' if name =~ /perl/
-    @language = 'python' if name =~ /python/
-    @language = 'ruby' if name =~ /ruby/
-  end
 end
 
 
