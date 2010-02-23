@@ -33,7 +33,7 @@ class XMLEasyReader
       e.name = @reader.name
       e.attributes = get_attributes() if fetch_attributes
     end
-    p e
+    # p e
     e
   end
 
