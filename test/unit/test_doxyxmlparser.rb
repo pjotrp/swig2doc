@@ -25,8 +25,10 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     xml = DoxyXMLParser.new(DOXYXML)
     reader = xml.reader
     assert(xml.doxygen?)   # this tests get_element implicitely
-    element = reader.get_element_with_attributes('sectiondef')
-    assert_equal('func',element.attributes['kind'])
+    sectiondef = reader.get_element_with_attributes('sectiondef')
+    assert_equal('func',sectiondef.attributes['kind'])
+    memberdef = reader.get_element_with_attributes('memberdef')
+    assert_equal("group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6",memberdef.attributes['id'])
 
   end
 
