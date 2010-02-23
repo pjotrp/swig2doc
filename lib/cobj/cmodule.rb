@@ -12,6 +12,8 @@ class CModule
     convert_from_raw(objects)
   end
 
+  # Convert a simple list of objects (Hash/Array) as generated from SWIG XML
+  # into a OOP object hierarchy
   def convert_from_raw objects
     objects.each do | obj |
       if obj['kind'] == 'function'
