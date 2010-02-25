@@ -23,7 +23,10 @@ class XMLEasyReader
     begin
       # p [name, @reader.name, XML::Reader::TYPE_ELEMENT, @reader.node_type] # if name == @reader.name
       if @reader.node_type == XML::Reader::TYPE_ELEMENT
-        break if name==nil  # returns the next element
+        if name==nil  # returns the next element
+          ok = true
+          break
+        end
         break if @reader.name==name 
       end
       ok = @reader.read
@@ -32,14 +35,14 @@ class XMLEasyReader
         return nil 
       end
     end while ok==true
-    p [@reader.name,'ok=',ok]
+    # p [@reader.name,'ok=',ok]
     if ok==true and @reader.node_type == XML::Reader::TYPE_ELEMENT
       e.name = @reader.name
       e.attributes = get_attributes() if fetch_attributes
     else 
       return nil
     end
-    # p e
+    p e
     e
   end
 
@@ -48,22 +51,23 @@ class XMLEasyReader
     get_element(name,true)
   end
 
-  # Find all elements matching regex and returns the contained nodes as 
-  # a node - this method is SWIG specific as it looks for an attributelist 
-  # element
-  def each_element_tree regex
+  # Find all elements matching regex and iterating the contained nodes as 
+  # a mini DOM tree. You can use the regex to find a master node, and yield
+  # a subset based on _subtree_.
+  def each_element_tree regex, subtree=nil
     begin
       @reader.read # move pointer forward
       e = get_element
+      p e
       break if e == nil
       if e.name =~ /#{regex}/
-        get_element('attributelist')
+        get_element(subtree) if subtree
         yield e.name, @reader.expand
       end 
     end while e != nil
   end
 
-  # Return attributes as a Hash
+  # Return one element's attributes as a Hash
   def get_attributes
     h = {}
     if @reader.has_attributes?

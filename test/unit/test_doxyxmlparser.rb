@@ -41,6 +41,7 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     reader.xml.read
     memberdef = reader.get_element_with_attributes('memberdef')
     assert_equal('function',memberdef.attributes['kind'])
+    reader.xml.read
     reader.each_element_tree("memberdef") do | type, tree |
       p tree.xml.to_s
       return  # just read once
