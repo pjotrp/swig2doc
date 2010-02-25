@@ -29,6 +29,21 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     assert_equal('func',sectiondef.attributes['kind'])
     memberdef = reader.get_element_with_attributes('memberdef')
     assert_equal("group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6",memberdef.attributes['id'])
+  end
+
+  def test_parse_function2
+    xml = DoxyXMLParser.new(DOXYXML)
+    reader = xml.reader
+    assert(xml.doxygen?)   # this tests get_element implicitely
+    sectiondef = reader.get_element_with_attributes('sectiondef')
+    assert_equal('func',sectiondef.attributes['kind'])
+    reader.read
+    sectiondef = reader.get_element_with_attributes('sectiondef')
+    p sectiondef
+    assert_equal('func',sectiondef.attributes['kind'])
+    reader.each_element_tree("memberdef") do | type, tree |
+      return  # just read once
+    end
 
   end
 

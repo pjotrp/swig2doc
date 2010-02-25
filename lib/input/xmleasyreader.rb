@@ -32,6 +32,8 @@ class XMLEasyReader
     if ok==true
       e.name = @reader.name
       e.attributes = get_attributes() if fetch_attributes
+    else 
+      return nil
     end
     # p e
     e
@@ -71,6 +73,10 @@ class XMLEasyReader
     end
     # p h
     h
+  end
+
+  def read
+    @reader.read
   end
 
   def xml

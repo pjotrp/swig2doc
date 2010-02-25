@@ -33,21 +33,12 @@ class DoxyXMLParser
     if !doxygen?
       raise "#{@fn} is not a Doxy XML document!"
     end
-    element = reader.get_element_with_attributes('sectiondef')
-
-    # element = @reader.get_element('attributelist')
-    # header = attributelist(reader.xml.expand)
-    # set_language(header['infile'])
-    # @modulename = header['name']
-    # @reader.each_element_tree("cdecl|class") do | type, tree |
-    # @reader.each_element_tree("cdecl|class") do | type, tree |
-      # print tree.to_s
-      # h = attributelist(tree)
-      # p h
-      # p [type, attributelist(tree)]
-      # objectlist.push h
-    # end
-    # objectlist
+    while element = reader.get_element_with_attributes('sectiondef')
+      next if !element.attributes['func']
+      reader.each_element_tree("memberdef") do | type, tree |
+      end
+    end
+    objectlist
   end
 
   # Parse the source code and return set of objects for the module
