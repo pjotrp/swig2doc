@@ -21,15 +21,19 @@ class XMLEasyReader
     e = XMLEasyElement.new()
     ok = nil
     begin
-      # p [name, @reader.name, @reader.node_type]
+      # p [name, @reader.name, XML::Reader::TYPE_ELEMENT, @reader.node_type] # if name == @reader.name
       if @reader.node_type == XML::Reader::TYPE_ELEMENT
         break if name==nil  # returns the next element
         break if @reader.name==name 
       end
       ok = @reader.read
-      return nil if ok == false
+      if ok != true
+        # p ["ERROR=",ok]
+        return nil 
+      end
     end while ok==true
-    if ok==true
+    p [@reader.name,'ok=',ok]
+    if ok==true and @reader.node_type == XML::Reader::TYPE_ELEMENT
       e.name = @reader.name
       e.attributes = get_attributes() if fetch_attributes
     else 
@@ -73,10 +77,6 @@ class XMLEasyReader
     end
     # p h
     h
-  end
-
-  def read
-    @reader.read
   end
 
   def xml
