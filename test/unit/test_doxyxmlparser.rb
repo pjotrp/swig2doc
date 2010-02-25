@@ -46,7 +46,7 @@ class TestDoxyXMLParser < Test::Unit::TestCase
       # assert it is a function
       assert('function',reader.get_attributes['kind'])
       # parse the member DOM tree
-      p reader.parse_memberdef(tree)
+      p xml.parse_memberdef(tree)
       return  # just read once
     end
 
