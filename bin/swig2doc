@@ -2,7 +2,7 @@
 #
 #  SWIG2DOC
 #
-#  Convert SWIG output to documentation
+#  Convert SWIG+Doxygen output to documentation
 #
 #  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
 #
@@ -46,7 +46,7 @@ opts = OptionParser.new do |opts|
     
 Examples:
 
-    swig2doc test/data/swig/perl_affyio_wrap.xml 
+    ./bin/swig2doc test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/swig/perl_affyio_wrap.xml 
     
 EXAMPLE
     exit()
@@ -60,13 +60,14 @@ opts.parse!(ARGV)
 exit(1) if ARGV.size == 0
 
 require 'sourcetree'
-require 'input/swigxmlparser'
+require 'input/parserfactory'
 require 'output/htmlwriter'
 
 tree = SourceTree.new
 
 ARGV.each do | fn |
-  tree.push SwigXMLParser.new(fn).cmodule
+  parser = ParserFactory.new(fn)
+  tree.push parser.cmodule
 end
 
 HtmlWriter.new(tree).write($options.outdir)
