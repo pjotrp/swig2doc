@@ -42,7 +42,7 @@ class XMLEasyReader
     else 
       return nil
     end
-    p e
+    # p e
     e
   end
 
@@ -58,7 +58,7 @@ class XMLEasyReader
     begin
       @reader.read # move pointer forward
       e = get_element
-      p e
+      # p e
       break if e == nil
       if e.name =~ /#{regex}/
         get_element(subtree) if subtree

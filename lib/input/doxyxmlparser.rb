@@ -47,7 +47,7 @@ class DoxyXMLParser
 
   def parse_memberdef(tree)
     h = {}
-    print tree.to_s,"\n"
+    # print tree.to_s,"\n"
     tree.each_element do | e |
       name = e.name
       case name

@@ -46,7 +46,10 @@ class TestDoxyXMLParser < Test::Unit::TestCase
       # assert it is a function
       assert('function',reader.get_attributes['kind'])
       # parse the member DOM tree
-      p xml.parse_memberdef(tree)
+      h = xml.parse_memberdef(tree)
+      assert('cel_num_cols',h['name'])
+      assert('unsigned long',h['type'])
+      assert(80,h['line'])
       return  # just read once
     end
 
