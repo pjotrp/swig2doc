@@ -33,11 +33,8 @@ class DoxyXMLParser
     if !doxygen?
       raise "#{@fn} is not a Doxy XML document!"
     end
-    while element = reader.get_element_with_attributes('sectiondef')
-      next if !element.attributes['func']
-      reader.read
-      reader.each_element_tree("memberdef") do | type, tree |
-      end
+    reader.each_element_tree("memberdef") do | type, tree |
+      # parse_member(tree)
     end
     objectlist
   end
@@ -48,6 +45,8 @@ class DoxyXMLParser
     # CModule.new(@modulename,objectlist)
   end
 
+  def parse_memberdef(tree)
+  end
 end
 
 

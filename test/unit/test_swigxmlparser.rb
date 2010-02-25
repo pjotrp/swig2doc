@@ -19,7 +19,7 @@ class TestSwigXMLParser < Test::Unit::TestCase
     element = reader.get_element('attributelist')
     assert_equal('attributelist',element.name)
     assert_equal("<attributelist id=\"2\" addr=\"b7cd59a8\">\n        <attribute name=\"outfile\" value=\"p",reader.xml.expand.to_s[0..80])
-    header = xml.attributelist(reader.xml.expand)
+    header = xml.parse_member_attributelist(reader.xml.expand)
     assert_equal('affyio',header['name'])
     assert_equal('perl_affyio.i',header['infile'])
   end

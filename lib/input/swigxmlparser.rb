@@ -32,12 +32,12 @@ class SwigXMLParser
     end
     # parse header
     element = @reader.get_element('attributelist')
-    header = attributelist(reader.xml.expand)
+    header = parse_member_attributelist(reader.xml.expand)
     set_language(header['infile'])
     @modulename = header['name']
     # ---- Now find each cdecl|class and push a Hash of values
     @reader.each_element_tree("cdecl|class","attributelist") do | type, tree |
-      h = attributelist(tree)
+      h = parse_member_attributelist(tree)
       objectlist.push h
     end
     objectlist
@@ -49,10 +49,10 @@ class SwigXMLParser
     SwigCModule.new(@modulename,objectlist)
   end
 
-  # Return a hash of attributes
-  def attributelist(node)
+  # Return a hash of SWIG function attributes as a Hash
+  def parse_member_attributelist(tree)
     h = {}
-    node.each do | attribute |
+    tree.each do | attribute |
       # p attribute
       if attribute.child?
         next if ['typescope'].index(attribute.name)
@@ -62,7 +62,7 @@ class SwigXMLParser
         parameters = []
         attribute.each do | parm |
           parm.each do | attrs |
-            ps = attributelist(attrs)
+            ps = parse_member_attributelist(attrs)
             parameters.push ps if ps != {}
           end
         end 
