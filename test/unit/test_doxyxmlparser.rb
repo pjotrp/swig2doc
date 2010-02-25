@@ -56,10 +56,9 @@ class TestDoxyXMLParser < Test::Unit::TestCase
   end
 
   def test_reader
-    # xml = DoxyXMLParser.new(DOXYXML)
-    # cmodule = xml.cmodule  # invokes parser
-    # assert_equal('C', xml.language)
-    true
+    xml = DoxyXMLParser.new(DOXYXML)
+    cmodule = xml.cmodule  # invokes parser
+    assert_equal('C', xml.language)
     # assert_equal('affyio', xml.modulename)
     # assert_equal('affyio', cmodule.name)
     # assert_equal(29,cmodule.functions.size)
