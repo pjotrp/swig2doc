@@ -3,11 +3,19 @@ class CFunction
 
   attr_reader :name
 
-  def initialize swigfunc
-    @swig = swigfunc
-    @name = swigfunc.name
+  def initialize name
+    @name = name
   end
 
+  def add_swig swig
+    raise "You can only add one swig for #{@swig.name}" if @swig != nil
+    @swig = swig
+  end
+
+  def add_doxy doxy
+    raise "You can only add one doxy for #{@doxy.name}" if @doxy != nil
+    @doxy = doxy
+  end
 end
 
 class CModule
@@ -18,6 +26,7 @@ class CModule
 
   def initialize 
     @functions = {}
+    @unmappedfunctions = {}
     # @variables = []
     # @classes   = []
     # @structs   = []
@@ -25,7 +34,19 @@ class CModule
 
   def add_swig_mapped_func func
     raise "Function mapped twice #{func.name}" if @functions[func.name]
-    @functions[func.name] = CFunction.new(func)
+    cfunc = CFunction.new(func.name)
+    cfunc.add_swig func
+    @functions[func.name] = cfunc
+  end
+
+  def add_doxy_func func
+    if @functions[func.name] 
+      @functions[func.name].add_doxy(func)
+    else
+      cfunc = CFunction.new(func.name)
+      cfunc.add_doxy func
+      @functions[func.name] = cfunc
+    end
   end
 
   def each_func

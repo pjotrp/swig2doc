@@ -25,9 +25,14 @@ class SourceTree
 
   def analyse
     @swig.each do | mapped |
-       mapped.functions.each do | mappedfunc |
-         @module.add_swig_mapped_func mappedfunc
-       end
+      mapped.functions.each do | mappedfunc |
+        @module.add_swig_mapped_func mappedfunc
+      end
+    end
+    @doxy.each do | doxy |
+      doxy.functions.each do | doxyfunc |
+        @module.add_doxy_func doxyfunc
+      end
     end
   end
 
