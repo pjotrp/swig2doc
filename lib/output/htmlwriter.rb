@@ -7,9 +7,9 @@ class HtmlWriter
 
   def write path
     Dir.mkdir(path) if !File.directory?(path)
-    @tree.each do | mod |
-      mod.functions.sort.each do | func |
-        print mod.name,':',func.name,"\n"
+    @tree.each_module do | swigmodule |
+      swigmodule.each_func do | func |
+        print swigmodule.name,':',func.name,"\n"
       end
     end
   end

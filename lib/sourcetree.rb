@@ -6,4 +6,8 @@ class SourceTree
      p type
   end
 
+  def each_module
+   
+  end
+
 end

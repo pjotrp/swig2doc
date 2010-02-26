@@ -70,5 +70,5 @@ ARGV.each do | fn |
   tree.add(parser.type, parser.cobjs)
 end
 
-# HtmlWriter.new(tree).write($options.outdir)
+HtmlWriter.new(tree).write($options.outdir)
 
