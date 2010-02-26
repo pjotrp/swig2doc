@@ -61,20 +61,18 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     assert_equal('C', xml.language)
     # assert_equal('affyio', xml.modulename)
     # assert_equal('affyio', cmodule.name)
-    # assert_equal(29,cmodule.functions.size)
+    assert_equal(25,cmodule.functions.size)
     # assert_equal(145,cmodule.variables.size)
     # assert_equal(20,cmodule.structs.size)
     # assert_equal(0,cmodule.classes.size)
   end
 
   def test_functions
-    true
-    # xml = DoxyXMLParser.new(DOXYXML)
-    # cmodule = xml.cmodule  # invokes parser
-    # function = cmodule.functions.first
-    # assert_equal("isTextCDFFile",function.name)
-    # assert_equal("int",function.type)
-    # assert_equal(1,function.parameters.size)
+    xml = DoxyXMLParser.new(DOXYXML)
+    cmodule = xml.cmodule  # invokes parser
+    function = cmodule.functions.first
+    assert_equal("open_celfile",function.name)
+    assert_equal("<ref refid=\"structCELOBJECT\" kindref=\"compound\">CELOBJECT</ref>",function.type)
   end
  
 end
