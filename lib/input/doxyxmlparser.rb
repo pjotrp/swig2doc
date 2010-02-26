@@ -48,7 +48,7 @@ class DoxyXMLParser
   end
 
   # Parse the source code and return set of objects for the module
-  def cmodule
+  def cobjs
     objectlist = parse
     DoxyCModule.new(@modulename,objectlist)
   end

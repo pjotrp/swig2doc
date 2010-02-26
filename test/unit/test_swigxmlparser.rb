@@ -26,20 +26,20 @@ class TestSwigXMLParser < Test::Unit::TestCase
 
   def test_reader
     xml = SwigXMLParser.new(SWIGXML)
-    cmodule = xml.cmodule  # invokes parser
+    cobjs = xml.cobjs  # invokes parser
     assert_equal('perl', xml.language)
     assert_equal('affyio', xml.modulename)
-    assert_equal('affyio', cmodule.name)
-    assert_equal(29,cmodule.functions.size)
-    assert_equal(145,cmodule.variables.size)
-    assert_equal(20,cmodule.structs.size)
-    assert_equal(0,cmodule.classes.size)
+    assert_equal('affyio', cobjs.name)
+    assert_equal(29,cobjs.functions.size)
+    assert_equal(145,cobjs.variables.size)
+    assert_equal(20,cobjs.structs.size)
+    assert_equal(0,cobjs.classes.size)
   end
 
   def test_functions
     xml = SwigXMLParser.new(SWIGXML)
-    cmodule = xml.cmodule  # invokes parser
-    function = cmodule.functions.first
+    cobjs = xml.cobjs  # invokes parser
+    function = cobjs.functions.first
     assert_equal("isTextCDFFile",function.name)
     assert_equal("int",function.type)
     assert_equal(1,function.parameters.size)

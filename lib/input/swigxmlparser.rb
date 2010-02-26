@@ -44,7 +44,7 @@ class SwigXMLParser
   end
 
   # Parse the source code and return set of objects for the module
-  def cmodule
+  def cobjs
     objectlist = parse
     SwigCModule.new(@modulename,objectlist)
   end

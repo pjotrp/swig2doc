@@ -57,20 +57,20 @@ class TestDoxyXMLParser < Test::Unit::TestCase
 
   def test_reader
     xml = DoxyXMLParser.new(DOXYXML)
-    cmodule = xml.cmodule  # invokes parser
+    cobjs = xml.cobjs  # invokes parser
     assert_equal('C', xml.language)
     # assert_equal('affyio', xml.modulename)
-    # assert_equal('affyio', cmodule.name)
-    assert_equal(25,cmodule.functions.size)
-    # assert_equal(145,cmodule.variables.size)
-    # assert_equal(20,cmodule.structs.size)
-    # assert_equal(0,cmodule.classes.size)
+    # assert_equal('affyio', cobjs.name)
+    assert_equal(25,cobjs.functions.size)
+    # assert_equal(145,cobjs.variables.size)
+    # assert_equal(20,cobjs.structs.size)
+    # assert_equal(0,cobjs.classes.size)
   end
 
   def test_functions
     xml = DoxyXMLParser.new(DOXYXML)
-    cmodule = xml.cmodule  # invokes parser
-    function = cmodule.functions.first
+    cobjs = xml.cobjs  # invokes parser
+    function = cobjs.functions.first
     assert_equal("open_celfile",function.name)
     assert_equal("<ref refid=\"structCELOBJECT\" kindref=\"compound\">CELOBJECT</ref>",function.type)
   end
