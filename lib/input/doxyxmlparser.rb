@@ -3,7 +3,7 @@
 
 require 'libxml'
 require 'input/xmleasyreader'
-require 'cobj/cmodule'
+require 'cobj/doxy/doxycmodule'
 
 class DoxyXMLParser
 
@@ -17,6 +17,7 @@ class DoxyXMLParser
     print " LibXML Doxygen reads #{fn}\n"
     @fn = fn
     @language = 'C'
+    @modulename = nil
     @reader = XMLEasyReader.new(fn)
   end
 
@@ -39,6 +40,7 @@ class DoxyXMLParser
       if @reader.get_attributes['kind'] == 'function'
         # parse the member DOM tree
         h = parse_memberdef(tree)
+        h['kind'] = 'function'
         objectlist.push h
       end
     end
@@ -48,8 +50,7 @@ class DoxyXMLParser
   # Parse the source code and return set of objects for the module
   def cmodule
     objectlist = parse
-    p objectlist.size
-    # CModule.new(@modulename,objectlist)
+    DoxyCModule.new(@modulename,objectlist)
   end
 
   def parse_memberdef(tree)

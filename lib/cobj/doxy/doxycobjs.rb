@@ -12,15 +12,17 @@ class DoxyCparameter < DoxyCvariable
 end
 
 class DoxyCfunction
-  attr_reader :name, :type, :parameters
+  attr_reader :name, :type, :briefdescription, :detaileddescription
+  attr_reader :file, :line, :bodystart, :bodyend
   def initialize obj
     @name = obj['name']
-    @decl = obj['decl']
     @type = obj['type']
-    @parameters = []
-    obj['parmlist'].each do | parameter |
-      @parameters.push DoxyCparameter.new(parameter)
-    end
+    @briefdescription = obj['briefdescription']
+    @detaileddescription = obj['detaileddescription']
+    @file = obj['file']
+    @line = obj['line']
+    @bodystart = obj['bodystart']
+    @bodyend = obj['bodyend']
   end
 
   def to_s
