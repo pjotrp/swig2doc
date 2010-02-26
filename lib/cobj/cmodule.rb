@@ -16,6 +16,10 @@ class CFunction
     raise "You can only add one doxy for #{@doxy.name}" if @doxy != nil
     @doxy = doxy
   end
+
+  def mapped?
+    @swig != nil
+  end
 end
 
 class CModule
@@ -54,4 +58,17 @@ class CModule
       yield func
     end
   end
+
+  def each_mapped_func
+    each_func do | func |
+      yield func if func.mapped?
+    end
+  end
+
+  def each_unmapped_func
+    each_func do | func |
+      yield func if !func.mapped?
+    end
+  end
+
 end
