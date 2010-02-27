@@ -44,6 +44,15 @@ class DoxyXMLParser
         objectlist.push h
       end
     end
+    # xml.read
+    # p xml.name
+    # Here we parse the global descriptions, setting kind to global
+    raise "global:briefdescription missing" if !@reader.get_element('briefdescription')
+    short = xml.expand.to_s
+    raise "global:detaileddescription missing" if !@reader.get_element('detaileddescription')
+    detailed = xml.expand.to_s
+    objectlist.push('kind' => 'global', 'briefdescription' => short,
+      'detaileddescription' => detailed)
     objectlist
   end
 

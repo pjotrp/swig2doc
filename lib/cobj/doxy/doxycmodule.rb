@@ -22,6 +22,8 @@ class DoxyCModule
         @variables.push DoxyCvariable.new(obj)
       elsif obj['kind'] == 'struct'
         @structs.push DoxyCstruct.new(obj)
+      elsif obj['kind'] == 'global'
+        p obj
       else
         raise "Unknow type <#{obj['kind']}>"
       end
