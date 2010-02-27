@@ -34,9 +34,7 @@ class CModule
   def initialize 
     @functions = {}
     @unmappedfunctions = {}
-    # @variables = []
-    # @classes   = []
-    # @structs   = []
+    @descriptions = []
   end
 
   def add_swig_mapped_func func
@@ -54,6 +52,10 @@ class CModule
       cfunc.add_doxy func
       @functions[func.name] = cfunc
     end
+  end
+
+  def add_description obj
+    @descriptions.push obj
   end
 
   def each_func
@@ -74,4 +76,9 @@ class CModule
     end
   end
 
+  def each_description
+    @descriptions.each do | descr |
+      yield descr
+    end
+  end
 end

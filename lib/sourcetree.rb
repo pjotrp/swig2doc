@@ -33,6 +33,9 @@ class SourceTree
       doxy.functions.each do | doxyfunc |
         @module.add_doxy_func doxyfunc
       end
+      doxy.descriptions.each do | descr |
+        @module.add_description descr
+      end
     end
   end
 

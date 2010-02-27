@@ -12,10 +12,11 @@ class DoxyCparameter < DoxyCvariable
 end
 
 class DoxyCremark
+  attr_reader :brief, :detailed
+
   def initialize obj
     @brief = obj['briefdescription']
     @detailed = obj['detaileddescription']
-    p self
   end
 end
 

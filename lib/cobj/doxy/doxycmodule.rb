@@ -2,14 +2,14 @@ require 'cobj/doxy/doxycobjs'
 
 class DoxyCModule
 
-  attr_reader :name, :functions, :variables, :classes, :structs
+  attr_reader :name, :functions, :variables, :classes, :structs, :descriptions
   def initialize name, objects
     @name = name
     @functions = []
     @variables = []
     @classes   = []
     @structs   = []
-    @remarks   = []
+    @descriptions = []
     convert_from_raw(objects)
   end
 
@@ -24,7 +24,7 @@ class DoxyCModule
       elsif obj['kind'] == 'struct'
         @structs.push DoxyCstruct.new(obj)
       elsif obj['kind'] == 'global'
-        @remarks.push DoxyCremark.new(obj)
+        @descriptions.push DoxyCremark.new(obj)
       else
         raise "Unknow type <#{obj['kind']}>"
       end
