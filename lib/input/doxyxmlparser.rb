@@ -70,6 +70,7 @@ class DoxyXMLParser
         when 'location'
           h['file'] = e['file']
           h['line'] = e['line'].to_i
+          h['bodyfile'] = e['bodyfile']
           h['bodystart'] = e['bodystart'].to_i
           h['bodyend'] = e['bodyend'].to_i
       end

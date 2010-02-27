@@ -1,6 +1,8 @@
 SWIG2DOC is an attempt at automatic generation of (HTML) documentation from
 SWIG generated code (via XML). In addition Doxygen output will be added, as
-well as sidewise injected documenation.
+well as sidewise injected documenation. For usage:
+
+  ./bin/swig2doc --help
 
 This is part of the Biolib initiative, see http://biolib.open-bio.org/.
 Meanwhile it may be of use to more people, so it lives in its own repository.

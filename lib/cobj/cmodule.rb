@@ -1,7 +1,7 @@
 
 class CFunction
 
-  attr_reader :name
+  attr_reader :name, :swig, :doxy
 
   def initialize name
     @name = name
@@ -13,8 +13,11 @@ class CFunction
   end
 
   def add_doxy doxy
-    raise "You can only add one doxy for #{@doxy.name}" if @doxy != nil
-    @doxy = doxy
+    if @doxy
+      @doxy.merge(doxy)
+    else
+      @doxy = doxy
+    end
   end
 
   def mapped?
