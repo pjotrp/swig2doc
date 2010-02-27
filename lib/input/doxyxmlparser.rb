@@ -35,7 +35,7 @@ class DoxyXMLParser
       raise "#{@fn} is not a Doxy XML document!"
     end
     xml.read
-    @reader.each_element_tree("memberdef") do | type, tree |
+    @reader.each_element_tree("memberdef","sectiondef",nil) do | type, tree |
       # assert it is a function
       if @reader.get_attributes['kind'] == 'function'
         # parse the member DOM tree

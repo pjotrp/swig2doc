@@ -42,7 +42,7 @@ class TestDoxyXMLParser < Test::Unit::TestCase
     memberdef = reader.get_element_with_attributes('memberdef')
     assert_equal('function',memberdef.attributes['kind'])
     reader.xml.read
-    reader.each_element_tree("memberdef") do | type, tree |
+    reader.each_element_tree("memberdef",nil,nil) do | type, tree |
       # assert it is a function
       assert('function',reader.get_attributes['kind'])
       # parse the member DOM tree

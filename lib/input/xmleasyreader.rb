@@ -17,17 +17,22 @@ class XMLEasyReader
   # Get the element and return XML element (always start). If name is specified
   # it will search for the first match. Returns nil when end of data. It 
   # also picks up the attributes of the element (if any)
-  def get_element name=nil, fetch_attributes=false
+  def get_element name=nil, namelast=nil, fetch_attributes=false
     e = XMLEasyElement.new()
     ok = nil
     begin
       # p [name, @reader.name, XML::Reader::TYPE_ELEMENT, @reader.node_type] # if name == @reader.name
-      if @reader.node_type == XML::Reader::TYPE_ELEMENT
-        if name==nil  # returns the next element
-          ok = true
-          break
-        end
-        break if @reader.name==name 
+      case @reader.node_type
+        when XML::Reader::TYPE_ELEMENT
+          if name==nil  # returns the next element
+            ok = true
+            break
+          end
+          break if @reader.name==name 
+        when XML::Reader::TYPE_END_ELEMENT
+          if namelast!=nil
+            return nil if @reader.name==namelast
+          end
       end
       ok = @reader.read
       if ok != true
@@ -48,22 +53,23 @@ class XMLEasyReader
 
   # Similar to get_element; fetches attributes automatically
   def get_element_with_attributes name=nil
-    get_element(name,true)
+    get_element(name,nil,true)
   end
 
   # Find all elements matching regex and iterating the contained nodes as 
   # a mini DOM tree. You can use the regex to find a master node, and yield
-  # a subset based on _subtree_.
-  def each_element_tree regex, subtree=nil
+  # a subset based on _subtree_ (if nil the whole tree). The routine stops
+  # when namelast is hit (unless nil).
+  def each_element_tree regex, namelast, subtree
     begin
       @reader.read # move pointer forward
-      e = get_element
+      e = get_element(nil,namelast)
       # p e
       break if e == nil
       if e.name =~ /#{regex}/
         get_element(subtree) if subtree
         yield e.name, @reader.expand
-      end 
+      end
     end while e != nil
   end
 
