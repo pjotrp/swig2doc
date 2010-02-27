@@ -9,6 +9,7 @@ class DoxyCModule
     @variables = []
     @classes   = []
     @structs   = []
+    @remarks   = []
     convert_from_raw(objects)
   end
 
@@ -23,7 +24,7 @@ class DoxyCModule
       elsif obj['kind'] == 'struct'
         @structs.push DoxyCstruct.new(obj)
       elsif obj['kind'] == 'global'
-        p obj
+        @remarks.push DoxyCremark.new(obj)
       else
         raise "Unknow type <#{obj['kind']}>"
       end

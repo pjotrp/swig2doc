@@ -11,6 +11,14 @@ end
 class DoxyCparameter < DoxyCvariable
 end
 
+class DoxyCremark
+  def initialize obj
+    @brief = obj['briefdescription']
+    @detailed = obj['detaileddescription']
+    p self
+  end
+end
+
 class DoxyCfunction
   attr_reader :name, :type, :briefdescription, :detaileddescription
   attr_reader :file, :line, :bodyfile, :bodystart, :bodyend
