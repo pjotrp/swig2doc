@@ -7,7 +7,7 @@
 #  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
 #
 
-PROG_VERSION='swig2doc 0.02 (February 2010)'
+PROG_NAME='swig2doc'
 
 srcpath=File.dirname(File.dirname(__FILE__))
 libpath=File.dirname(srcpath)+'/lib'
@@ -16,8 +16,11 @@ $: << libpath
 require 'optparse'
 require 'ostruct'
 require 'rubygems'
+require 'config/defaultconfig'
 
-print "#{PROG_VERSION}\n"
+defaultconfig = DefaultConfig.new(srcpath+'/etc/default.yaml')
+
+print PROG_NAME+" #{defaultconfig.version} (#{defaultconfig.vdate}) #{defaultconfig.copyright}\n"
 
 usage = <<USAGE
 
@@ -26,7 +29,7 @@ usage = <<USAGE
     output. Multiple outputs can be specified. For more information see
     http://biolib.open-bio.org/
 
-    Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+    #{defaultconfig.copyright}
         
     Use --help for more information
 
