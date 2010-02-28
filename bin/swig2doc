@@ -35,19 +35,23 @@ USAGE
 print(usage) if ARGV.size == 0
 
 $options = OpenStruct.new()
-$options.outdir = './tmp'
+$options.outdir = './output'
 Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
 
 opts = OptionParser.new do |opts|
-  opts.on("--auto", "generate native language output (POD for Perl)") do | b |
+  opts.on("--auto", "generate native language output (POD for Perl, others nyi)") do | b |
     $options.output_auto = true
   end
   opts.on("--text", "generate plain text output") do | b |
     $options.output_text = true
   end
-  opts.on("--html", "generate HTML output") do | b |
+  opts.on("--html", "generate HTML output (nyi)") do | b |
     $options.output_html = true
   end
+  opts.on("--latex", "generate LaTeX output (nyi)") do | b |
+    $options.output_latex = true
+  end
+
 
   opts.on_tail("-h", "--help", "Print this help") {
     print(usage)
@@ -68,6 +72,7 @@ exit(1) if ARGV.size == 0
 
 require 'sourcetree'
 require 'input/parserfactory'
+require 'output/textwriter'
 require 'output/htmlwriter'
 
 tree = SourceTree.new
@@ -80,13 +85,19 @@ end
 tree.analyse
 
 if $options.output_text
+  TextWriter.new(tree).write($options.outdir+'/txt')
 end
 
 if $options.output_html
   HtmlWriter.new(tree).write($options.outdir+'/html')
 end
 
+if $options.output_latex
+  $stderr.print "LaTeX output not yet implemented!"
+end
+
 if $options.output_auto
+  $stderr.print "Native formats not yet implemented!"
 end
 
 
