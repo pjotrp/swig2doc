@@ -1,6 +1,8 @@
 # Swig2doc textual writer
 #
 
+require 'output/transform/doxytransform'
+
 class TextWriter
 
   def initialize(tree)
@@ -13,7 +15,10 @@ class TextWriter
       fn = path + '/' + m.name + '.txt'
       File.open(fn,"w") do | f |
         m.each_description do | descr |
-          f.print descr.detailed
+          doxyxml = DoxyTransform.new(descr.brief)
+          f.print doxyxml.to_s
+          doxyxml = DoxyTransform.new(descr.detailed)
+          f.print doxyxml.to_s
         end
         m.each_mapped_func do | func |
           f.print m.name,':',func.name,"\n"
