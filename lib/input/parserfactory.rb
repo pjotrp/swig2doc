@@ -13,10 +13,10 @@ class ParserFactory
       s += f.gets
       case s
         when /<doxygen/
-          @parser = DoxyXMLParser.new(fn)
+          @xmlparser = DoxyXMLParser.new(fn)
           @type   = :doxy
         when /<top/
-          @parser = SwigXMLParser.new(fn)
+          @xmlparser = SwigXMLParser.new(fn)
           @type   = :swig
         else
           raise "No parser for <#{fn}>"
@@ -25,7 +25,14 @@ class ParserFactory
   end
 
   def cobjs
-    @parser.cobjs
+    @xmlparser.cobjs
   end
 
+  def language
+    @xmlparser.language
+  end
+
+  def modulename
+    @xmlparser.modulename
+  end
 end

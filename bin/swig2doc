@@ -23,9 +23,10 @@ usage = <<USAGE
 
 		Convert SWIG+Doxygen XML to some form of documentation. By default this is
 		POD for Perl, rdoc for Ruby. Other switches allow textual, HTML and LaTeX
-		output. For more information see http://biolib.open-bio.org/
+		output. Multiple outputs can be specified. For more information see
+		http://biolib.open-bio.org/
 
-    Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+		Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
         
     Use --help for more information
 
@@ -38,11 +39,14 @@ $options.outdir = './tmp'
 Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
 
 opts = OptionParser.new do |opts|
+  opts.on("--auto", "generate native language output (POD for Perl)") do | b |
+    $options.output_auto = true
+  end
   opts.on("--text", "generate plain text output") do | b |
-    $options.output = :text
+    $options.output_text = true
   end
   opts.on("--html", "generate HTML output") do | b |
-    $options.output = :html
+    $options.output_html = true
   end
 
   opts.on_tail("-h", "--help", "Print this help") {
@@ -70,10 +74,19 @@ tree = SourceTree.new
 
 ARGV.each do | fn |
   parser = ParserFactory.new(fn)
-  tree.add(parser.type, parser.cobjs)
+  tree.add(parser)
 end
 
 tree.analyse
 
-HtmlWriter.new(tree).write($options.outdir+'/html')
+if $options.output_text
+end
+
+if $options.output_html
+  HtmlWriter.new(tree).write($options.outdir+'/html')
+end
+
+if $options.output_auto
+end
+
 
