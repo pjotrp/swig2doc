@@ -3,7 +3,10 @@ require 'lib/cobj/cmodule'
 
 class SourceTree 
 
-  def initialize
+  attr_reader :config
+
+  def initialize config
+    @config          = config
     @swig            = []
     @doxy            = []
     @module          = CModule.new

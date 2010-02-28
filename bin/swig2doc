@@ -7,8 +7,6 @@
 #  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
 #
 
-PROG_NAME='swig2doc'
-
 srcpath=File.dirname(File.dirname(__FILE__))
 libpath=File.dirname(srcpath)+'/lib'
 $: << libpath
@@ -20,7 +18,7 @@ require 'config/defaultconfig'
 
 defaultconfig = DefaultConfig.new(srcpath+'/etc/default.yaml')
 
-print PROG_NAME+" #{defaultconfig.version} (#{defaultconfig.vdate}) #{defaultconfig.copyright}\n"
+print defaultconfig.copyright_msg+"\n"
 
 usage = <<USAGE
 
@@ -86,7 +84,7 @@ require 'input/parserfactory'
 require 'output/textwriter'
 require 'output/htmlwriter'
 
-tree = SourceTree.new
+tree = SourceTree.new(defaultconfig)
 
 ARGV.each do | fn |
   parser = ParserFactory.new(fn)
