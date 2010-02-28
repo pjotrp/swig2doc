@@ -21,12 +21,12 @@ print "#{PROG_VERSION}\n"
 
 usage = <<USAGE
 
-		Convert SWIG+Doxygen XML to some form of documentation. By default this is
-		POD for Perl, rdoc for Ruby. Other switches allow textual, HTML and LaTeX
-		output. Multiple outputs can be specified. For more information see
-		http://biolib.open-bio.org/
+    Convert SWIG+Doxygen XML to some form of documentation. By default this is
+    POD for Perl, rdoc for Ruby. Other switches allow textual, HTML and LaTeX
+    output. Multiple outputs can be specified. For more information see
+    http://biolib.open-bio.org/
 
-		Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+    Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
         
     Use --help for more information
 
@@ -60,13 +60,21 @@ opts = OptionParser.new do |opts|
     
 Examples:
 
-    ./bin/swig2doc test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/swig/perl_affyio_wrap.xml 
+    Generate Perl POD (this is Perl input):
+
+    ./bin/swig2doc test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/doxygen/xml/affyio/biolib__affyio_8h.xml test/data/swig/perl_affyio_wrap.xml
+
+    Generate Textual output in ./output/txt:
+
+    ./bin/swig2doc --text test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/doxygen/xml/affyio/biolib__affyio_8h.xml test/data/swig/perl_affyio_wrap.xml
     
 EXAMPLE
     exit()
   }
 end
 opts.parse!(ARGV)
+
+$options.output_auto = true if !$options.output_latex and !$options.output_text and !$options.output_html
 
 exit(1) if ARGV.size == 0
 
