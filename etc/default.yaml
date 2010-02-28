@@ -1,0 +1,6 @@
+# Default configuration for Swig2doc
+:global:
+  :progname: swig2doc
+  :version: 0.03
+  :vdate: March 2010
+  :copyright: "Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl>"
