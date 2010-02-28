@@ -21,14 +21,12 @@ print "#{PROG_VERSION}\n"
 
 usage = <<USAGE
 
-    Convert SWIG XML to documentation (primarily HTML). Also
-		allows for injecting info from Doxygen XML output. See
-		http://biolib.open-bio.orb/
+		Convert SWIG+Doxygen XML to some form of documentation. By default this is
+		POD for Perl, rdoc for Ruby. Other switches allow textual, HTML and LaTeX
+		output. For more information see http://biolib.open-bio.org/
 
     Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
         
-  usage:
-
     Use --help for more information
 
 USAGE
@@ -36,10 +34,18 @@ USAGE
 print(usage) if ARGV.size == 0
 
 $options = OpenStruct.new()
-$options.outdir = './swig2doc'
+$options.outdir = './tmp'
+Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
 
 opts = OptionParser.new do |opts|
-  opts.on_tail("-h", "--help", "Print this message") {
+  opts.on("--text", "generate plain text output") do | b |
+    $options.output = :text
+  end
+  opts.on("--html", "generate HTML output") do | b |
+    $options.output = :html
+  end
+
+  opts.on_tail("-h", "--help", "Print this help") {
     print(usage)
     print(opts)
     print <<EXAMPLE
@@ -51,9 +57,6 @@ Examples:
 EXAMPLE
     exit()
   }
-  # opts.on '--seq=fn', 'Sequence information (UTR in FASTA)' do | fn |
-  #  $options.seqinfo_fn = fn
-  #end
 end
 opts.parse!(ARGV)
 
@@ -72,5 +75,5 @@ end
 
 tree.analyse
 
-HtmlWriter.new(tree).write($options.outdir)
+HtmlWriter.new(tree).write($options.outdir+'/html')
 
