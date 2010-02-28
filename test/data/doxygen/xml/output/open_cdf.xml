@@ -1,0 +1,11 @@
+<detaileddescription>
+<para>BIOLIB 'C' interface to affyio - for linking against the Bio* languages</para><para>These functions provide access to Affymetrix probe values (CEL files) and the location description of each probe on the trip (CDF files). The underlying library parsing these files is Affyio by Ben Bolstad. The same that is used in R/Bioconductor.</para><para>De pseudo-code for reading all PM's in a file is:</para><para><programlisting><codeline><highlight class="normal"><sp/><sp/><sp/>cel<sp/>=<sp/>open_cel(</highlight><highlight class="stringliteral">'celfile'</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>cdf<sp/>=<sp/>open_cdf('cdffile')</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>for<sp/>probeset=0<sp/>;<sp/>probeset<sp/>&lt;<sp/><ref refid="group__affyio_1g1e2c4b3b44387b39eaff2a9b1de124ec" kindref="member">cdf_num_probesets</ref>(cdf)<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>info<sp/>=<sp/><ref refid="group__affyio_1gc9e8bceeff515dddb23156088f7191bb" kindref="member">cdf_probeset_info</ref>(cdf,probeset)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>for<sp/>probe=0;<sp/>probe<sp/>&lt;<sp/>info.probes<sp/>;<sp/>do</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print<sp/><ref refid="group__affyio_1g8187b62e9e398567705c7332318f2311" kindref="member">cel_pm</ref>(cel,cdf,probeset,probe)</highlight></codeline>
+</programlisting></para><para><simplesect kind="author"><para>Pjotr Prins 2008</para></simplesect>
+See the BioLib API or biolib_affyio.c for method descriptions. Some implementation info is available in ./src/clibs/affyio-ver/README_BIOLIB.</para><para><simplesect kind="see"><para><ref refid="group__affyio_1ge0bdacab9809b9b475b9d7bfe1332bc6" kindref="member">open_celfile</ref> </para><para><ref refid="group__affyio_1g825a5e31ed64673a4b09f40c6de081d4" kindref="member">open_cdffile</ref> </para></simplesect>
+</para>    </detaileddescription>
+       
