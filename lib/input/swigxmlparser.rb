@@ -46,7 +46,7 @@ class SwigXMLParser
   # Parse the source code and return set of objects for the module
   def cobjs
     objectlist = parse
-    SwigCModule.new(@modulename,objectlist)
+    SwigCModule.new(@modulename,@language,objectlist)
   end
 
   # Return a hash of SWIG function attributes as a Hash

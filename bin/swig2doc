@@ -74,7 +74,7 @@ tree = SourceTree.new
 
 ARGV.each do | fn |
   parser = ParserFactory.new(fn)
-  tree.add(parser)
+  tree.add(parser.type, parser.cobjs)
 end
 
 tree.analyse

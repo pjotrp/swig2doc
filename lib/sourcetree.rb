@@ -10,15 +10,14 @@ class SourceTree
   end
 
   # Add a list of cobjs type
-  def add parser
-    if parser.language and @language and parser.language != @language
-      raise "Only one language is allowed! (now #{@language} and @{parser.language}"
-    end
-    type = parser.type
-    cobjs = parser.cobjs
+  def add type, cobjs
     case type 
       when :swig
         raise "Only one SWIG module is supported" if @swig.size > 1
+        if @language and cobjs.language != @language
+          raise "Only one language is allowed! (now #{@language} and @{cobjs.language}"
+        end
+        @language = cobjs.language
         @module.name = cobjs.name
         @swig.push cobjs
       when :doxy

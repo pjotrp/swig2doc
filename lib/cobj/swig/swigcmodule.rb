@@ -2,9 +2,10 @@ require 'cobj/swig/swigcobjs'
 
 class SwigCModule
 
-  attr_reader :name, :functions, :variables, :classes, :structs
-  def initialize name, objects
+  attr_reader :name, :language, :functions, :variables, :classes, :structs
+  def initialize name, language, objects
     @name = name
+    @language = language
     @functions = []
     @variables = []
     @classes   = []
