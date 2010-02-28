@@ -20,6 +20,11 @@ class CFunction
     end
   end
 
+  def doxy_description
+    return '' if !doxy
+    doxy.detaileddescription
+  end
+
   def mapped?
     @swig != nil
   end

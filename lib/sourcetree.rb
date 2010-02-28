@@ -3,7 +3,7 @@ require 'lib/cobj/cmodule'
 
 class SourceTree 
 
-  attr_reader :config
+  attr_reader :config, :language
 
   def initialize config
     @config          = config
