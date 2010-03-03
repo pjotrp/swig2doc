@@ -106,7 +106,13 @@ if $options.output_latex
 end
 
 if $options.output_auto
-  $stderr.print "Native formats not yet implemented!"
+  case tree.language
+    when 'perl'
+      require 'output/podwriter'
+		  PodWriter.new(tree).write($options.outdir+'/perl')
+    else
+      $stderr.print "Native format #{tree.language} not yet implemented!"
+	end
 end
 
 
