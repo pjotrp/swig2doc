@@ -28,6 +28,19 @@ class CFunction
   def mapped?
     @swig != nil
   end
+
+  def to_perl
+    res = name() + '('
+    if mapped?
+      @swig.parameters.each do | p |
+        res += '$'+p.name+','
+      end
+      res.chop!
+    else
+      res += '...'
+    end
+    res + ')'
+  end
 end
 
 class CModule

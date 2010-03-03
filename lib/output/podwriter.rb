@@ -55,7 +55,23 @@ The following functions are available for this module:
 =over
 
 <% m.each_mapped_func do |func| %> 
-=item B< <%= func.name %>() >
+=item B< <%= func.to_perl %> >
+
+<% descr = DoxyTransform.new(func.doxy_description).to_s %>
+<%= descr %>
+<% end %>
+
+=head1 UNMAPPED METHODS
+
+The following functions are available for this module, but have not 
+been mapped to Perl:
+
+=over
+
+<% m.each_unmapped_func do |func| %> 
+=item B< <%= func.to_perl %> >
+
+Note: this method has not been mapped to Perl.
 
 <% descr = DoxyTransform.new(func.doxy_description).to_s %>
 <%= descr %>
@@ -63,7 +79,13 @@ The following functions are available for this module:
 
 =head1 AUTHORS
 
-(authorlist)
+The original code ...
+
+=head1 CONTACT
+
+For more information on the Perl mapping of this module, please 
+subscribe to the Biolib mailing list and post the questions there. See
+L<http://biolib.open-bio.org/>.
 
 =head1 COPYRIGHT AND LICENSE
 
