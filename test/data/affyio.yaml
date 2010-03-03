@@ -1,0 +1,26 @@
+# Extra information on the Affyio module
+:module:
+  :name: affyio
+  :version: 
+    :file: ./DESCRIPTION  
+    :regex: Version: (\w+)
+  :author:
+    :file: ./DESCRIPTION  
+    :regex: Author: 
+  :license:
+    :type: LGPL2
+    :descr: "LGPL - GNU LESSER GENERAL PUBLIC LICENSE version 2.1"
+    :file: ./LICENSE
+  :description:
+    :brief: Access to Affymetrix microarray .CEL and .CDF files
+    :detailed: "Fetch PM (perfect match) and MM (mismatch) signal for individual
+      probes, and combine probes into probesets. The module includes the original
+      Affyio C source by Ben Bolstad"
+:documentation:
+  :author: Documentation author
+:mapping:
+  :author: Mapping author
+:perl:
+  :license:
+    :type: Perl
+
