@@ -1,11 +1,13 @@
 # Extra information on the Affyio module
 :module:
   :name: affyio
+  :paths:
+    test: ../data 
   :version: 
-    :file: ./DESCRIPTION  
+    :file: $test/DESCRIPTION  
     :regex: "Version: (\w+)"
   :author:
-    :file: ./DESCRIPTION  
+    :file: $test/DESCRIPTION  
     :regex: "Author: "
   :license:
     :type: LGPL2

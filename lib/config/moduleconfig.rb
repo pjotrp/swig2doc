@@ -11,7 +11,7 @@ class ModuleConfig
   end
 
   def modulename
-    @module[:modulename]
+    @module[:name]
   end
 
 end
