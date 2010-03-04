@@ -61,13 +61,17 @@ opts = OptionParser.new do |opts|
     
 Examples:
 
-    Generate Perl POD (this is Perl input):
+  Generate Perl POD (this is Perl input):
 
-    ./bin/swig2doc test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/doxygen/xml/affyio/biolib__affyio_8h.xml test/data/swig/perl_affyio_wrap.xml
+    ./bin/swig2doc test/data/affyio.yaml test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/doxygen/xml/affyio/biolib__affyio_8h.xml test/data/swig/perl_affyio_wrap.xml
 
-    Generate Textual output in ./output/txt:
+  Simplified, when doxy files are defined in yaml:
 
-    ./bin/swig2doc --text test/data/doxygen/xml/affyio/biolib__affyio_8c.xml test/data/doxygen/xml/affyio/biolib__affyio_8h.xml test/data/swig/perl_affyio_wrap.xml
+    ./bin/swig2doc test/data/affyio.yaml test/data/swig/perl_affyio_wrap.xml
+
+  Generate Textual output in ./output/txt:
+
+    ./bin/swig2doc --text test/data/affyio.yaml test/data/swig/perl_affyio_wrap.xml
     
 EXAMPLE
     exit()
