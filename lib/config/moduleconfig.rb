@@ -14,4 +14,15 @@ class ModuleConfig
     @module[:name]
   end
 
+  def paths
+    @module[:paths]
+  end
+
+  def expand_filename s
+    paths.each do | var, path |
+      s.gsub!(/\$#{var}/,path)
+    end
+    s
+  end
+
 end

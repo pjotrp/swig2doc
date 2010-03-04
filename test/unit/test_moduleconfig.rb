@@ -14,6 +14,9 @@ class TestModuleConfig < Test::Unit::TestCase
     assert_equal('affyio',m.modulename)
     assert_equal('affyio',m.module[:name])
     assert_equal({'test'=>'../data'},m.module[:paths])
+    assert_equal({'test'=>'../data'},m.paths)
+    assert_equal('$test/DESCRIPTION',m.module[:version][:file])
+    assert_equal('../data/DESCRIPTION',m.expand_filename(m.module[:version][:file]))
   end
 
 end
