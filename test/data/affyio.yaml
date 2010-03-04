@@ -3,10 +3,10 @@
   :name: affyio
   :version: 
     :file: ./DESCRIPTION  
-    :regex: Version: (\w+)
+    :regex: "Version: (\w+)"
   :author:
     :file: ./DESCRIPTION  
-    :regex: Author: 
+    :regex: "Author: "
   :license:
     :type: LGPL2
     :descr: "LGPL - GNU LESSER GENERAL PUBLIC LICENSE version 2.1"

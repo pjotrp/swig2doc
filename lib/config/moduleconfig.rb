@@ -1,26 +1,17 @@
 
 require 'yaml'
 
-class DefaultConfig
+class ModuleConfig
+
+  attr_reader :module
 
   def initialize fn
     @h = YAML::load(File.read(fn))
-    @global = @h[:global]
+    @module = @h[:module]
   end
 
-  def version
-    @global[:version]
+  def modulename
+    @module[:modulename]
   end
 
-  def vdate
-    @global[:vdate]
-  end
-
-  def copyright
-    @global[:copyright]
-  end
-
-  def copyright_msg
-    "#{@global[:progname]} #{version} (#{vdate}) #{copyright}"
-  end
 end

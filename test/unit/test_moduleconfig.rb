@@ -10,7 +10,8 @@ require 'config/moduleconfig'
 class TestModuleConfig < Test::Unit::TestCase
 
   def test_yaml
-    mc = ModuleConfig.new(CONFIG)
+    m = ModuleConfig.new(CONFIG)
+    assert('affyio',m.modulename)
   end
 
 end
