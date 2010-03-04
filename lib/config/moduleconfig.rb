@@ -10,8 +10,17 @@ class ModuleConfig
     @module = @h[:module]
   end
 
-  def modulename
+  def module_name
     @module[:name]
+  end
+
+  def module_version
+    v = @module[:version]
+    return res if (res = readit(v[:file],v[:regex]) != nil)
+    @module[:version]
+  end
+
+  def module_author
   end
 
   def paths
@@ -25,4 +34,10 @@ class ModuleConfig
     s
   end
 
+  def readit(fn,regex=nil)
+    buf = File.new(fn).read
+    return buf.strip if regex == nil
+    buf.split(/\r/)
+    p buf
+  end
 end
