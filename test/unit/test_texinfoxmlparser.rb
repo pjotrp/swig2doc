@@ -23,7 +23,7 @@ class TestTexInfoXMLParser < Test::Unit::TestCase
   def test_parse_function
     xml = TexInfoXMLParser.new(TEXIXML)
     reader = xml.reader
-    assert(xml.texinfo??)   # this tests get_element implicitely
+    assert(xml.texinfo?)   # this tests get_element implicitely
     memberdef = reader.get_element_with_attributes('memberdef')
     assert_equal('function',memberdef.attributes['kind'])
     reader.xml.read
