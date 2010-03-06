@@ -59,11 +59,12 @@ class TexInfoXMLParser
     TexInfoCModule.new(@modulename,objectlist)
   end
 
-  def parse_memberdef(tree)
+  def parse_definition(tree)
     h = {}
     # print tree.to_s,"\n"
     tree.each_element do | e |
       name = e.name
+      p name
       case name
         when 'type' 
           h[name] = e.child.to_s

@@ -24,21 +24,14 @@ class TestTexInfoXMLParser < Test::Unit::TestCase
     xml = TexInfoXMLParser.new(TEXIXML)
     reader = xml.reader
     assert(xml.texinfo?)   # this tests get_element implicitely
-    memberdef = reader.get_element_with_attributes('memberdef')
-    assert_equal('function',memberdef.attributes['kind'])
-    reader.xml.read
-    memberdef = reader.get_element_with_attributes('memberdef')
-    assert_equal('function',memberdef.attributes['kind'])
-    reader.xml.read
-    reader.each_element_tree("memberdef",nil,nil) do | type, tree |
-      # assert it is a function
-      assert('function',reader.get_attributes['kind'])
+    # memberdef = reader.get_element('definition')
+    reader.each_element_tree("definition",nil,nil) do | type, tree |
       # parse the member DOM tree
-      h = xml.parse_memberdef(tree)
-      assert('cel_num_cols',h['name'])
-      assert('unsigned long',h['type'])
-      assert(80,h['line'])
-      return  # just read once
+      p tree.to_s
+      h = xml.parse_definition(tree)
+      assert('Function',h['defcategory'])
+      assert('gsl_stats_mean',h['deffunction'])
+      return  # just read one function
     end
 
   end
