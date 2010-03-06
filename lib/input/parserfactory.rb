@@ -8,6 +8,7 @@ class ParserFactory
 
   def initialize fn
     if fn =~ /\.yaml$/
+      
     else
       File.open(fn) do | f |
         s = f.gets

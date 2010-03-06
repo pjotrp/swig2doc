@@ -1,0 +1,1582 @@
+<?xml version="1.0"?>
+<!DOCTYPE texinfo PUBLIC "-//GNU//DTD TexinfoML V4.11//EN" "http://www.gnu.org/software/texinfo/dtd/4.11/texinfo.dtd">
+<texinfo xml:lang="en">
+  <setfilename>statistics.info</setfilename>
+  <para><indexterm index="cp">statistics</indexterm><indexterm index="cp">mean</indexterm><indexterm index="cp">standard deviation</indexterm><indexterm index="cp">variance</indexterm><indexterm index="cp">estimated standard deviation</indexterm><indexterm index="cp">estimated variance</indexterm><indexterm index="cp">t-test</indexterm><indexterm index="cp">range</indexterm><indexterm index="cp">min</indexterm><indexterm index="cp">max</indexterm> This chapter describes the statistical functions in the library.  The basic statistical functions include routines to compute the mean, variance and standard deviation.  More advanced functions allow you to calculate absolute deviations, skewness, and kurtosis as well as the median and arbitrary percentiles.  The algorithms use recurrence relations to compute average quantities in a stable way, without large intermediate values that might overflow.</para>
+  <para>The functions are available in versions for datasets in the standard floating-point and integer types.  The versions for double precision floating-point data have the prefix <code>gsl_stats</code> and are declared in the header file <file>gsl_statistics_double.h</file>.  The versions for integer data have the prefix <code>gsl_stats_int</code> and are declared in the header file <file>gsl_statistics_int.h</file>.</para>
+  <node>
+    <nodename>Top</nodename>
+    <nodeup>(dir)</nodeup>
+    <unnumbered>
+      <title>Top</title>
+      <menu>
+        <menuentry>
+          <menunode>Mean and standard deviation and variance</menunode>
+          <menutitle>Mean and standard deviation and variance</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Absolute deviation</menunode>
+          <menutitle>Absolute deviation</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Higher moments (skewness and kurtosis)</menunode>
+          <menutitle>Higher moments (skewness and kurtosis)</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Autocorrelation</menunode>
+          <menutitle>Autocorrelation</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Covariance</menunode>
+          <menutitle>Covariance</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Correlation</menunode>
+          <menutitle>Correlation</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Weighted Samples</menunode>
+          <menutitle>Weighted Samples</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Maximum and Minimum values</menunode>
+          <menutitle>Maximum and Minimum values</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Median and Percentiles</menunode>
+          <menutitle>Median and Percentiles</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Example statistical programs</menunode>
+          <menutitle>Example statistical programs</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+        <menuentry>
+          <menunode>Statistics References and Further Reading</menunode>
+          <menutitle>Statistics References and Further Reading</menutitle>
+          <menucomment></menucomment>
+        </menuentry>
+      </menu>
+    </unnumbered>
+  </node>
+  <node>
+    <nodename>Mean and standard deviation and variance</nodename>
+    <nodenext>Absolute deviation</nodenext>
+    <nodeprev>Top</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Mean, Standard Deviation and Variance</title>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_mean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_mean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the arithmetic mean of <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The arithmetic mean, or <dfn>sample mean</dfn>, is denoted by <math>\Hat\mu</math> and defined as,</para>
+          <example xml:space="preserve">\Hat\mu = (1/N) \sum x_i</example>
+          <para role="continues">where <math>x_i</math> are the elements of the dataset <var>data</var>.  For samples drawn from a gaussian distribution the variance of <math>\Hat\mu</math> is <math>\sigma^2 / N</math>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_variance</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_variance</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the estimated, or <dfn>sample</dfn>, variance of <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The estimated variance is denoted by <math>\Hat\sigma^2</math> and is defined by,</para>
+          <example xml:space="preserve">\Hat\sigma^2 = (1/(N-1)) \sum (x_i - \Hat\mu)^2</example>
+          <para role="continues">where <math>x_i</math> are the elements of the dataset <var>data</var>.  Note that the normalization factor of <math>1/(N-1)</math> results from the derivation of <math>\Hat\sigma^2</math> as an unbiased estimator of the population variance <math>\sigma^2</math>.  For samples drawn from a gaussian distribution the variance of <math>\Hat\sigma^2</math> itself is <math>2 \sigma^4 / N</math>.</para>
+          <para>This function computes the mean via a call to <code>gsl_stats_mean</code>.  If you have already computed the mean then you can pass it directly to <code>gsl_stats_variance_m</code>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_variance_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_variance_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the sample variance of <var>data</var> relative to the given value of <var>mean</var>.  The function is computed with <math>\Hat\mu</math> replaced by the value of <var>mean</var> that you supply,</para>
+          <example xml:space="preserve">\Hat\sigma^2 = (1/(N-1)) \sum (x_i - mean)^2</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_sd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_sd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionterm><indexterm index="fn">gsl_stats_sd_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_sd_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>The standard deviation is defined as the square root of the variance. These functions return the square root of the corresponding variance functions above.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_tss</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_tss</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionterm><indexterm index="fn">gsl_stats_tss_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_tss_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>These functions return the total sum of squares (TSS) of <var>data</var> about the mean.  For <code>gsl_stats_tss_m</code> the user-supplied value of <var>mean</var> is used, and for <code>gsl_stats_tss</code> it is computed using <code>gsl_stats_mean</code>.</para>
+          <example xml:space="preserve">TSS =  \sum (x_i - mean)^2</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_variance_with_fixed_mean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_variance_with_fixed_mean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes an unbiased estimate of the variance of <var>data</var> when the population mean <var>mean</var> of the underlying distribution is known <emph>a priori</emph>.  In this case the estimator for the variance uses the factor <math>1/N</math> and the sample mean <math>\Hat\mu</math> is replaced by the known population mean <math>\mu</math>,</para>
+          <example xml:space="preserve">\Hat\sigma^2 = (1/N) \sum (x_i - \mu)^2</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_sd_with_fixed_mean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_sd_with_fixed_mean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function calculates the standard deviation of <var>data</var> for a fixed population mean <var>mean</var>.  The result is the square root of the corresponding variance function.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Absolute deviation</nodename>
+    <nodenext>Higher moments (skewness and kurtosis)</nodenext>
+    <nodeprev>Mean and standard deviation and variance</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Absolute deviation</title>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_absdev</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_absdev</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the absolute deviation from the mean of <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The absolute deviation from the mean is defined as,</para>
+          <example xml:space="preserve">absdev  = (1/N) \sum |x_i - \Hat\mu|</example>
+          <para role="continues">where <math>x_i</math> are the elements of the dataset <var>data</var>.  The absolute deviation from the mean provides a more robust measure of the width of a distribution than the variance.  This function computes the mean of <var>data</var> via a call to <code>gsl_stats_mean</code>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_absdev_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_absdev_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the absolute deviation of the dataset <var>data</var> relative to the given value of <var>mean</var>,</para>
+          <example xml:space="preserve">absdev  = (1/N) \sum |x_i - mean|</example>
+          <para role="continues">This function is useful if you have already computed the mean of <var>data</var> (and want to avoid recomputing it), or wish to calculate the absolute deviation relative to another value (such as zero, or the median).</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Higher moments (skewness and kurtosis)</nodename>
+    <nodenext>Autocorrelation</nodenext>
+    <nodeprev>Absolute deviation</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Higher moments (skewness and kurtosis)</title>
+      <para><indexterm index="cp">skewness</indexterm><indexterm index="cp">kurtosis</indexterm></para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_skew</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_skew</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the skewness of <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The skewness is defined as,</para>
+          <example xml:space="preserve">skew = (1/N) \sum ((x_i - \Hat\mu)/\Hat\sigma)^3</example>
+          <para role="continues">where <math>x_i</math> are the elements of the dataset <var>data</var>.  The skewness measures the asymmetry of the tails of a distribution.</para>
+          <para>The function computes the mean and estimated standard deviation of <var>data</var> via calls to <code>gsl_stats_mean</code> and <code>gsl_stats_sd</code>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_skew_m_sd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_skew_m_sd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>sd</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the skewness of the dataset <var>data</var> using the given values of the mean <var>mean</var> and standard deviation <var>sd</var>,</para>
+          <example xml:space="preserve">skew = (1/N) \sum ((x_i - mean)/sd)^3</example>
+          <para role="continues">These functions are useful if you have already computed the mean and standard deviation of <var>data</var> and want to avoid recomputing them.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_kurtosis</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_kurtosis</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the kurtosis of <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The kurtosis is defined as,</para>
+          <example xml:space="preserve">kurtosis = ((1/N) \sum ((x_i - \Hat\mu)/\Hat\sigma)^4)  - 3</example>
+          <para role="continues">The kurtosis measures how sharply peaked a distribution is, relative to its width.  The kurtosis is normalized to zero for a gaussian distribution.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_kurtosis_m_sd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_kurtosis_m_sd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>sd</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the kurtosis of the dataset <var>data</var> using the given values of the mean <var>mean</var> and standard deviation <var>sd</var>,</para>
+          <example xml:space="preserve">kurtosis = ((1/N) \sum ((x_i - mean)/sd)^4) - 3</example>
+          <para role="continues">This function is useful if you have already computed the mean and standard deviation of <var>data</var> and want to avoid recomputing them.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Autocorrelation</nodename>
+    <nodenext>Covariance</nodenext>
+    <nodeprev>Higher moments (skewness and kurtosis)</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Autocorrelation</title>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_lag1_autocorrelation</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_lag1_autocorrelation</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the lag-1 autocorrelation of the dataset <var>data</var>.</para>
+          <example xml:space="preserve">a_1 = {\sum_{i = 1}^{n} (x_{i} - \Hat\mu) (x_{i-1} - \Hat\mu)
+       \over
+       \sum_{i = 1}^{n} (x_{i} - \Hat\mu) (x_{i} - \Hat\mu)}</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_lag1_autocorrelation_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_lag1_autocorrelation_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the lag-1 autocorrelation of the dataset <var>data</var> using the given value of the mean <var>mean</var>.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Covariance</nodename>
+    <nodenext>Correlation</nodenext>
+    <nodeprev>Autocorrelation</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Covariance</title>
+      <para><indexterm index="cp">covariance, of two datasets</indexterm></para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_covariance</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_covariance</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data1</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride1</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data2</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride2</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the covariance of the datasets <var>data1</var> and <var>data2</var> which must both be of the same length <var>n</var>.</para>
+          <example xml:space="preserve">covar = (1/(n - 1)) \sum_{i = 1}^{n} (x_i - \Hat x) (y_i - \Hat y)</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_covariance_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_covariance_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data1</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride1</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data2</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride2</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>mean1</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>mean2</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the covariance of the datasets <var>data1</var> and <var>data2</var> using the given values of the means, <var>mean1</var> and <var>mean2</var>.  This is useful if you have already computed the means of <var>data1</var> and <var>data2</var> and want to avoid recomputing them.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Correlation</nodename>
+    <nodenext>Weighted Samples</nodenext>
+    <nodeprev>Covariance</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Correlation</title>
+      <para><indexterm index="cp">correlation, of two datasets</indexterm></para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_correlation</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_correlation</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data1</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride1</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data2</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>stride2</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function efficiently computes the Pearson correlation coefficient between the datasets <var>data1</var> and <var>data2</var> which must both be of the same length <var>n</var>.</para>
+          <example xml:space="preserve">r = cov(x, y) / (\Hat\sigma_x \Hat\sigma_y)
+  = {1/(n-1) \sum (x_i - \Hat x) (y_i - \Hat y)
+     \over
+     \sqrt{1/(n-1) \sum (x_i - \Hat x)^2} \sqrt{1/(n-1) \sum (y_i - \Hat y)^2}
+    }</example>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Weighted Samples</nodename>
+    <nodenext>Maximum and Minimum values</nodenext>
+    <nodeprev>Correlation</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Weighted Samples</title>
+      <para>The functions described in this section allow the computation of statistics for weighted samples.  The functions accept an array of samples, <math>x_i</math>, with associated weights, <math>w_i</math>.  Each sample <math>x_i</math> is considered as having been drawn from a Gaussian distribution with variance <math>\sigma_i^2</math>.  The sample weight <math>w_i</math> is defined as the reciprocal of this variance, <math>w_i = 1/\sigma_i^2</math>.  Setting a weight to zero corresponds to removing a sample from a dataset.</para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wmean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wmean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the weighted mean of the dataset <var>data</var> with stride <var>stride</var> and length <var>n</var>, using the set of weights <var>w</var> with stride <var>wstride</var> and length <var>n</var>.  The weighted mean is defined as,</para>
+          <example xml:space="preserve">\Hat\mu = (\sum w_i x_i) / (\sum w_i)</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wvariance</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wvariance</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the estimated variance of the dataset <var>data</var> with stride <var>stride</var> and length <var>n</var>, using the set of weights <var>w</var> with stride <var>wstride</var> and length <var>n</var>.  The estimated variance of a weighted dataset is calculated as,</para>
+          <example xml:space="preserve">\Hat\sigma^2 = ((\sum w_i)/((\sum w_i)^2 - \sum (w_i^2)))
+                \sum w_i (x_i - \Hat\mu)^2</example>
+          <para role="continues">Note that this expression reduces to an unweighted variance with the familiar <math>1/(N-1)</math> factor when there are <math>N</math> equal non-zero weights.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wvariance_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wvariance_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the estimated variance of the weighted dataset <var>data</var> using the given weighted mean <var>wmean</var>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wsd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wsd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>The standard deviation is defined as the square root of the variance. This function returns the square root of the corresponding variance function <code>gsl_stats_wvariance</code> above.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wsd_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wsd_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the square root of the corresponding variance function <code>gsl_stats_wvariance_m</code> above.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wvariance_with_fixed_mean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wvariance_with_fixed_mean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes an unbiased estimate of the variance of the weighted dataset <var>data</var> when the population mean <var>mean</var> of the underlying distribution is known <emph>a priori</emph>.  In this case the estimator for the variance replaces the sample mean <math>\Hat\mu</math> by the known population mean <math>\mu</math>,</para>
+          <example xml:space="preserve">\Hat\sigma^2 = (\sum w_i (x_i - \mu)^2) / (\sum w_i)</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wsd_with_fixed_mean</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wsd_with_fixed_mean</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>mean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>The standard deviation is defined as the square root of the variance. This function returns the square root of the corresponding variance function above.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wtss</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wtss</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionterm><indexterm index="fn">gsl_stats_wtss_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wtss_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>size_t</defparam> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>These functions return the weighted total sum of squares (TSS) of <var>data</var> about the weighted mean.  For <code>gsl_stats_wtss_m</code> the user-supplied value of <var>wmean</var> is used, and for <code>gsl_stats_wtss</code> it is computed using <code>gsl_stats_wmean</code>.</para>
+          <example xml:space="preserve">TSS =  \sum w_i (x_i - wmean)^2</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wabsdev</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wabsdev</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the weighted absolute deviation from the weighted mean of <var>data</var>.  The absolute deviation from the mean is defined as,</para>
+          <example xml:space="preserve">absdev = (\sum w_i |x_i - \Hat\mu|) / (\sum w_i)</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wabsdev_m</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wabsdev_m</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the absolute deviation of the weighted dataset <var>data</var> about the given weighted mean <var>wmean</var>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wskew</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wskew</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the weighted skewness of the dataset <var>data</var>.</para>
+          <example xml:space="preserve">skew = (\sum w_i ((x_i - xbar)/\sigma)^3) / (\sum w_i)</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wskew_m_sd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wskew_m_sd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wsd</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the weighted skewness of the dataset <var>data</var> using the given values of the weighted mean and weighted standard deviation, <var>wmean</var> and <var>wsd</var>.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wkurtosis</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wkurtosis</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the weighted kurtosis of the dataset <var>data</var>.</para>
+          <example xml:space="preserve">kurtosis = ((\sum w_i ((x_i - xbar)/sigma)^4) / (\sum w_i)) - 3</example>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_wkurtosis_m_sd</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_wkurtosis_m_sd</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>w</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>wstride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wmean</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>wsd</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function computes the weighted kurtosis of the dataset <var>data</var> using the given values of the weighted mean and weighted standard deviation, <var>wmean</var> and <var>wsd</var>.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Maximum and Minimum values</nodename>
+    <nodenext>Median and Percentiles</nodenext>
+    <nodeprev>Weighted Samples</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Maximum and Minimum values</title>
+      <para>The following functions find the maximum and minimum values of a dataset (or their indices).  If the data contains <code>NaN</code>s then a <code>NaN</code> will be returned, since the maximum or minimum value is undefined.  For functions which return an index, the location of the first <code>NaN</code> in the array is returned.</para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_max</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_max</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the maximum value in <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The maximum value is defined as the value of the element <math>x_i</math> which satisfies 
+<!-- {$x_i \ge x_j$} --><math>x_i &gt;= x_j</math> for all <math>j</math>.</para>
+          <para>If you want instead to find the element with the largest absolute magnitude you will need to apply <code>fabs</code> or <code>abs</code> to your data before calling this function.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_min</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_min</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the minimum value in <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The minimum value is defined as the value of the element <math>x_i</math> which satisfies 
+<!-- {$x_i \le x_j$} --><math>x_i &lt;= x_j</math> for all <math>j</math>.</para>
+          <para>If you want instead to find the element with the smallest absolute magnitude you will need to apply <code>fabs</code> or <code>abs</code> to your data before calling this function.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_minmax</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>void</deftype> 
+          <deffunction>gsl_stats_minmax</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>double</defparamtype> 
+          <defparam>*</defparam> 
+          <defparam><var>min</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam>*</defparam> 
+          <defparam><var>max</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function finds both the minimum and maximum values <var>min</var>, <var>max</var> in <var>data</var> in a single pass.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_max_index</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>size_t</deftype> 
+          <deffunction>gsl_stats_max_index</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the index of the maximum value in <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The maximum value is defined as the value of the element <math>x_i</math> which satisfies 
+<!-- {$x_i \ge x_j$} --><math>x_i &gt;= x_j</math> for all <math>j</math>.  When there are several equal maximum elements then the first one is chosen.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_min_index</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>size_t</deftype> 
+          <deffunction>gsl_stats_min_index</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the index of the minimum value in <var>data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The minimum value is defined as the value of the element <math>x_i</math> which satisfies 
+<!-- {$x_i \ge x_j$} --><math>x_i &gt;= x_j</math> for all <math>j</math>.  When there are several equal minimum elements then the first one is chosen.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_minmax_index</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>void</deftype> 
+          <deffunction>gsl_stats_minmax_index</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>size_t</defparamtype> 
+          <defparam>*</defparam> 
+          <defparam><var>min_index</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam>*</defparam> 
+          <defparam><var>max_index</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the indexes <var>min_index</var>, <var>max_index</var> of the minimum and maximum values in <var>data</var> in a single pass.</para>
+        </definitionitem>
+      </definition>
+    </section>
+  </node>
+  <node>
+    <nodename>Median and Percentiles</nodename>
+    <nodenext>Example statistical programs</nodenext>
+    <nodeprev>Maximum and Minimum values</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Median and Percentiles</title>
+      <para>The median and percentile functions described in this section operate on sorted data.  For convenience we use <dfn>quantiles</dfn>, measured on a scale of 0 to 1, instead of percentiles (which use a scale of 0 to 100).</para>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_median_from_sorted_data</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_median_from_sorted_data</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>sorted_data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns the median value of <var>sorted_data</var>, a dataset of length <var>n</var> with stride <var>stride</var>.  The elements of the array must be in ascending numerical order.  There are no checks to see whether the data are sorted, so the function <code>gsl_sort</code> should always be used first.</para>
+          <para>When the dataset has an odd number of elements the median is the value of element <math>(n-1)/2</math>.  When the dataset has an even number of elements the median is the mean of the two nearest middle values, elements <math>(n-1)/2</math> and <math>n/2</math>.  Since the algorithm for computing the median involves interpolation this function always returns a floating-point number, even for integer data types.</para>
+        </definitionitem>
+      </definition>
+      <definition>
+        <definitionterm><indexterm index="fn">gsl_stats_quantile_from_sorted_data</indexterm>
+          <defcategory>Function</defcategory> 
+          <deftype>double</deftype> 
+          <deffunction>gsl_stats_quantile_from_sorted_data</deffunction> 
+          <defdelimiter>(</defdelimiter>
+          <defparamtype>const</defparamtype> 
+          <defparam>double</defparam> 
+          <defparam><var>sorted_data</var></defparam>
+          <defdelimiter>[</defdelimiter>
+          <defdelimiter>]</defdelimiter>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>stride</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>size_t</defparamtype> 
+          <defparam><var>n</var></defparam>
+          <defdelimiter>,</defdelimiter> 
+          <defparamtype>double</defparamtype> 
+          <defparam><var>f</var></defparam>
+          <defdelimiter>)</defdelimiter>
+        </definitionterm>
+        <definitionitem>
+          <para>This function returns a quantile value of <var>sorted_data</var>, a double-precision array of length <var>n</var> with stride <var>stride</var>.  The elements of the array must be in ascending numerical order.  The quantile is determined by the <var>f</var>, a fraction between 0 and 1.  For example, to compute the value of the 75th percentile <var>f</var> should have the value 0.75.</para>
+          <para>There are no checks to see whether the data are sorted, so the function <code>gsl_sort</code> should always be used first.</para>
+          <para>The quantile is found by interpolation, using the formula</para>
+          <example xml:space="preserve">quantile = (1 - \delta) x_i + \delta x_{i+1}</example>
+          <para role="continues">where <math>i</math> is <code>floor</code>(<math>(n - 1)f</math>) and <math>\delta</math> is <math>(n-1)f - i</math>.</para>
+          <para>Thus the minimum value of the array (<code>data[0*stride]</code>) is given by <var>f</var> equal to zero, the maximum value (<code>data[(n-1)*stride]</code>) is given by <var>f</var> equal to one and the median value is given by <var>f</var> equal to 0.5.  Since the algorithm for computing quantiles involves interpolation this function always returns a floating-point number, even for integer data types.</para>
+        </definitionitem>
+      </definition>
+<!-- @node Statistical tests -->
+<!-- @section Statistical tests -->
+<!-- FIXME, do more work on the statistical tests -->
+<!-- @deftypefun double gsl_stats_ttest (const double @var{data1}[], double @var{data2}[], size_t @var{n1}, size_t @var{n2}) -->
+<!-- @deftypefunx Statistics double gsl_stats_int_ttest (const double @var{data1}[], double @var{data2}[], size_t @var{n1}, size_t @var{n2}) -->
+<!-- The function @code{gsl_stats_ttest} computes the t-test statistic for -->
+<!-- the two arrays @var{data1}[] and @var{data2}[], of lengths @var{n1} and -->
+<!-- @var{n2} respectively. -->
+<!-- The t-test statistic measures the difference between the means of two -->
+<!-- datasets. -->
+    </section>
+  </node>
+  <node>
+    <nodename>Example statistical programs</nodename>
+    <nodenext>Statistics References and Further Reading</nodenext>
+    <nodeprev>Median and Percentiles</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>Examples</title>
+      <para>Here is a basic example of how to use the statistical functions:</para>
+      <example xml:space="preserve"><verbatim xml:space="preserve">#include &lt;stdio.h&gt;
+#include &lt;gsl/gsl_statistics.h&gt;
+
+int
+main(void)
+{
+  double data[5] = {17.2, 18.1, 16.5, 18.3, 12.6};
+  double mean, variance, largest, smallest;
+
+  mean     = gsl_stats_mean(data, 1, 5);
+  variance = gsl_stats_variance(data, 1, 5);
+  largest  = gsl_stats_max(data, 1, 5);
+  smallest = gsl_stats_min(data, 1, 5);
+
+  printf ("The dataset is %g, %g, %g, %g, %g\n",
+         data[0], data[1], data[2], data[3], data[4]);
+
+  printf ("The sample mean is %g\n", mean);
+  printf ("The estimated variance is %g\n", variance);
+  printf ("The largest value is %g\n", largest);
+  printf ("The smallest value is %g\n", smallest);
+  return 0;
+}</verbatim></example>
+      <para>The program should produce the following output,</para>
+      <example xml:space="preserve"><verbatim xml:space="preserve">The dataset is 17.2, 18.1, 16.5, 18.3, 12.6
+The sample mean is 16.54
+The estimated variance is 4.2984
+The largest value is 18.3
+The smallest value is 12.6</verbatim></example>
+      <para>Here is an example using sorted data,</para>
+      <example xml:space="preserve"><verbatim xml:space="preserve">#include &lt;stdio.h&gt;
+#include &lt;gsl/gsl_sort.h&gt;
+#include &lt;gsl/gsl_statistics.h&gt;
+
+int
+main(void)
+{
+  double data[5] = {17.2, 18.1, 16.5, 18.3, 12.6};
+  double median, upperq, lowerq;
+
+  printf ("Original dataset:  %g, %g, %g, %g, %g\n",
+         data[0], data[1], data[2], data[3], data[4]);
+
+  gsl_sort (data, 1, 5);
+
+  printf ("Sorted dataset: %g, %g, %g, %g, %g\n",
+         data[0], data[1], data[2], data[3], data[4]);
+
+  median 
+    = gsl_stats_median_from_sorted_data (data, 
+                                         1, 5);
+
+  upperq 
+    = gsl_stats_quantile_from_sorted_data (data, 
+                                           1, 5,
+                                           0.75);
+  lowerq 
+    = gsl_stats_quantile_from_sorted_data (data, 
+                                           1, 5,
+                                           0.25);
+
+  printf ("The median is %g\n", median);
+  printf ("The upper quartile is %g\n", upperq);
+  printf ("The lower quartile is %g\n", lowerq);
+  return 0;
+}</verbatim></example>
+      <para>This program should produce the following output,</para>
+      <example xml:space="preserve"><verbatim xml:space="preserve">Original dataset: 17.2, 18.1, 16.5, 18.3, 12.6
+Sorted dataset: 12.6, 16.5, 17.2, 18.1, 18.3
+The median is 17.2
+The upper quartile is 18.1
+The lower quartile is 16.5</verbatim></example>
+    </section>
+  </node>
+  <node>
+    <nodename>Statistics References and Further Reading</nodename>
+    <nodeprev>Example statistical programs</nodeprev>
+    <nodeup>Top</nodeup>
+    <section>
+      <title>References and Further Reading</title>
+      <para>The standard reference for almost any topic in statistics is the multi-volume <cite>Advanced Theory of Statistics</cite> by Kendall and Stuart.</para>
+      <itemize>
+        <itemfunction></itemfunction>
+        <item>
+          <para>Maurice Kendall, Alan Stuart, and J. Keith Ord. <cite>The Advanced Theory of Statistics</cite> (multiple volumes) reprinted as <cite>Kendall's Advanced Theory of Statistics</cite>. Wiley, ISBN 047023380X.</para>
+        </item>
+      </itemize>
+      <para role="continues">Many statistical concepts can be more easily understood by a Bayesian approach.  The following book by Gelman, Carlin, Stern and Rubin gives a comprehensive coverage of the subject.</para>
+      <itemize>
+        <itemfunction></itemfunction>
+        <item>
+          <para>Andrew Gelman, John B. Carlin, Hal S. Stern, Donald B. Rubin. <cite>Bayesian Data Analysis</cite>. Chapman &amp; Hall, ISBN 0412039915.</para>
+        </item>
+      </itemize>
+      <para role="continues">For physicists the Particle Data Group provides useful reviews of Probability and Statistics in the &ldquo;Mathematical Tools&rdquo; section of its Annual Review of Particle Physics.</para>
+      <itemize>
+        <itemfunction></itemfunction>
+        <item>
+          <para><cite>Review of Particle Properties</cite> R.M. Barnett et al., Physical Review D54, 1 (1996)</para>
+        </item>
+      </itemize>
+      <para role="continues">The Review of Particle Physics is available online at the website <uref><urefurl>http://pdg.lbl.gov/</urefurl></uref>.</para>
+    </section>
+  </node>
+</texinfo>
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-indent-step:1
+sgml-indent-data:nil
+End:
+-->
