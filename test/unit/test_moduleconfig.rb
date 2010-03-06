@@ -19,7 +19,7 @@ class TestModuleConfig < Test::Unit::TestCase
     assert_equal('../data/DESCRIPTION',m.expand_filename(m.module[:version][:file]))
     assert_equal('1.15.1',m.module_version)
     assert_equal("Benjamin Milo Bolstad <bmb@bmbolstad.com>",m.module_author)
-    assert_equal('LGPL2',m.module[:licence][:type])
+    assert_equal('LGPL2',m.module[:license][:type])
   end
 
 end
