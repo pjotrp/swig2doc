@@ -1,4 +1,4 @@
-require 'cobj/TexInfo/TexInfocobjs'
+require 'cobj/texinfo/texinfocobjs'
 
 class TexInfoCModule
 

@@ -3,7 +3,7 @@
 
 require 'libxml'
 require 'input/xmleasyreader'
-require 'cobj/TexInfo/TexInfocmodule'
+require 'cobj/texinfo/texinfocmodule'
 
 class TexInfoXMLParser
 
@@ -31,7 +31,7 @@ class TexInfoXMLParser
   def parse
     objectlist = []
     xml = @reader.xml
-    if !TexInfogen?
+    if !texinfo?
       raise "#{@fn} is not a TexInfo XML document!"
     end
     xml.read

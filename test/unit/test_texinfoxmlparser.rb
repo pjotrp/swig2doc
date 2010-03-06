@@ -17,7 +17,7 @@ class TestTexInfoXMLParser < Test::Unit::TestCase
     reader = xml.reader
     assert(xml.texinfo?)   # this tests get_element implicitely
     element = reader.get_element_with_attributes('section')
-    assert_equal("<title>Mean, Standard Deviation and Variance</title>",reader.xml.expand.to_s[0..80])
+    assert_equal("<section>\n      <title>Mean, Standard Deviation and Variance</title>\n      <defin",reader.xml.expand.to_s[0..80])
   end
 
   def test_parse_function
