@@ -16,7 +16,8 @@ class ModuleConfig
 
   def module_version
     v = @module[:version]
-    return res if (res = readit(v[:file],v[:regex]) != nil)
+    res = nil
+    return res if (res = readit(v[:file],v[:regex]))
     @module[:version]
   end
 
@@ -35,9 +36,18 @@ class ModuleConfig
   end
 
   def readit(fn,regex=nil)
+    p ['regex',regex]
     buf = File.new(fn).read
     return buf.strip if regex == nil
-    buf.split(/\r/)
-    p buf
+    buf.split(/\n/).each do | s |
+      if s =~ /#{regex}/
+        if $1 
+          return $1 
+        else
+          return $'
+        end
+      end
+    end
+    nil
   end
 end

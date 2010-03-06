@@ -5,7 +5,7 @@
     test: ../data 
   :version: 
     :file: $test/DESCRIPTION  
-    :regex: "Version: (\w+)"
+    :regex: "Version: (\S+)"
   :author:
     :file: $test/DESCRIPTION  
     :regex: "Author: "
