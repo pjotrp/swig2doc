@@ -22,6 +22,10 @@ class ModuleConfig
   end
 
   def module_author
+    v = @module[:author]
+    res = nil
+    return res if (res = readit(v[:file],v[:regex]))
+    @module[:author]
   end
 
   def paths
@@ -36,8 +40,8 @@ class ModuleConfig
   end
 
   def readit(fn,regex=nil)
-    p ['regex',regex]
-    buf = File.new(fn).read
+    # p ['regex',regex]
+    buf = File.new(expand_filename(fn)).read
     return buf.strip if regex == nil
     buf.split(/\n/).each do | s |
       if s =~ /#{regex}/
