@@ -29,7 +29,7 @@ class PodWriter
 
 %perlcode %{
 @EXPORT_OK = qw/
-        <% m.each_mapped_func do |func| %> <%= func.name %> 
+        <% m.each_mapped_func do |func| %> <%= func.name %>
         <% end %>
              /;
 %EXPORT_TAGS = ( all => [ @EXPORT_OK ] );
@@ -52,14 +52,16 @@ __END__
 
 The following functions are available for this module:
 
+
 =over
-
-<% m.each_mapped_func do |func| %> 
+<% m.each_mapped_func do |func| %>
 =item B< <%= func.to_perl %> >
-
-<% descr = DoxyTransform.new(func.doxy_description).to_s %>
+<% descr = DoxyTransform.new(func.doxy_description).to_s %><% if descr!='' %>
 <%= descr %>
-<% end %>
+<% else %>
+(...)
+<% end %><% end %>
+=back
 
 =head1 UNMAPPED METHODS
 
@@ -76,6 +78,7 @@ Note: this method has not been mapped to Perl.
 <% descr = DoxyTransform.new(func.doxy_description).to_s %>
 <%= descr %>
 <% end %>
+=back
 
 =head1 AUTHORS
 
