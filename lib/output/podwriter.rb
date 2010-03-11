@@ -70,13 +70,11 @@ been mapped to Perl:
 
 =over
 
-<% m.each_unmapped_func do |func| %> 
+<% m.each_unmapped_func do |func| %>
 =item B< <%= func.to_perl %> >
-
-Note: this method has not been mapped to Perl.
-
 <% descr = DoxyTransform.new(func.doxy_description).to_s %>
 <%= descr %>
+(Note: this method is not available from Perl)
 <% end %>
 =back
 
