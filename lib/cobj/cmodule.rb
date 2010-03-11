@@ -43,7 +43,9 @@ class CFunction
   end
 
   def <=> func
-    return -1 if !func.doxy
+    # Check whether functions are documented - make sure they are at the 
+    # end of the list
+    return -1 if !func.doxy 
     return 1 if !doxy
     doxy.line <=> func.doxy.line
   end
