@@ -59,14 +59,13 @@ The following functions are available for this module:
 <% descr = DoxyTransform.new(func.doxy_description).to_s %><% if descr!='' %>
 <%= descr %>
 <% else %>
-(...)
+...
 <% end %><% end %>
 =back
 
 =head1 UNMAPPED METHODS
 
-The following functions are available for this module, but have not 
-been mapped to Perl:
+The following functions have not (yet) been mapped to Perl:
 
 =over
 

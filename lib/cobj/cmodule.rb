@@ -41,6 +41,27 @@ class CFunction
     end
     res + ')'
   end
+
+  def <=> func
+    return -1 if !func.doxy
+    return 1 if !doxy
+    doxy.line <=> func.doxy.line
+  end
+end
+
+class CFunctions < Hash
+
+  # Iterate an ordered list of functions - these are sorted by filename
+  # and line number.
+  def ordered
+    list = []
+    each do | name, func |
+      list.push func
+    end
+    list.sort.each do | func |
+      yield func.name, func
+    end
+  end
 end
 
 class CModule
@@ -50,7 +71,7 @@ class CModule
   # , :variables, :classes, :structs
 
   def initialize 
-    @functions = {}
+    @functions = CFunctions.new
     @unmappedfunctions = {}
     @descriptions = []
   end
@@ -77,7 +98,7 @@ class CModule
   end
 
   def each_func
-    @functions.each do | name, func |
+    @functions.ordered do | name, func |
       yield func
     end
   end
