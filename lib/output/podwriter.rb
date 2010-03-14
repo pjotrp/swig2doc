@@ -52,15 +52,23 @@ __END__
 
 The following functions are available for this module:
 
+=over
+<% m.each_mapped_func_descr do |func| %>
+=item B< <%= func.to_perl %> >
+<% descr = DoxyTransform.new(func.doxy_description).to_s %>
+<%= descr %>
+<% end %>
+=back
+
+The following functions are available for this module, but have no 
+description:
 
 =over
-<% m.each_mapped_func do |func| %>
+<% m.each_mapped_func_undescr do |func| %>
 =item B< <%= func.to_perl %> >
-<% descr = DoxyTransform.new(func.doxy_description).to_s %><% if descr!='' %>
+<% descr = DoxyTransform.new(func.doxy_description).to_s %>
 <%= descr %>
-<% else %>
-...
-<% end %><% end %>
+<% end %>
 =back
 
 =head1 UNMAPPED METHODS

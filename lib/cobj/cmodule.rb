@@ -22,11 +22,17 @@ class CFunction
 
   def doxy_description
     return '' if !doxy
-    doxy.detaileddescription
+    descr = doxy.detaileddescription.strip
+    return '...' if descr == ''
+    descr
   end
 
   def mapped?
     @swig != nil
+  end
+
+  def descr?
+    @doxy != nil
   end
 
   def to_perl
@@ -108,6 +114,18 @@ class CModule
   def each_mapped_func
     each_func do | func |
       yield func if func.mapped?
+    end
+  end
+
+  def each_mapped_func_descr
+    each_func do | func |
+      yield func if func.mapped? and func.descr?
+    end
+  end
+
+  def each_mapped_func_undescr
+    each_func do | func |
+      yield func if func.mapped? and !func.descr?
     end
   end
 
