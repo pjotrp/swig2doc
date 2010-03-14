@@ -8,8 +8,10 @@
 #
 
 srcpath=File.dirname(File.dirname(__FILE__))
-libpath=File.dirname(srcpath)+'/lib'
+libpath=srcpath+'/lib'
 $: << libpath
+
+# p $:
 
 require 'optparse'
 require 'ostruct'
