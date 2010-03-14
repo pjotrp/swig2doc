@@ -1,5 +1,5 @@
 
-require 'lib/cobj/cmodule'
+require 'cobj/cmodule'
 
 class SourceTree 
 
