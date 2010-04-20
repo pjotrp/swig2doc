@@ -23,8 +23,10 @@ class SwigCModule
         @variables.push SwigCvariable.new(obj)
       elsif obj['kind'] == 'struct'
         @structs.push SwigCstruct.new(obj)
+      elsif obj['kind'] == 'typedef'
+        # do nothing
       else
-        raise "Unknow type <#{obj['kind']}>"
+        raise "Unknown type <#{obj['kind']}>"
       end
     end
   end
