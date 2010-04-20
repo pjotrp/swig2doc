@@ -37,11 +37,13 @@ class CFunction
 
   def to_perl
     res = name() + '('
+    pars = ''
     if mapped?
       @swig.parameters.each do | p |
-        res += '$'+p.name+','
+        pars += '$'+p.name+',' if p.name
       end
-      res.chop!
+      pars.chop! 
+      res += pars
     else
       res += '...'
     end
