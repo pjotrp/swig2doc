@@ -65,9 +65,15 @@ exit(1) if ARGV.size == 0
 # require 'input/parserfactory'
 # require 'output/textwriter'
 # require 'output/htmlwriter'
+require 'cobj/source/sourcecmodule'
+require 'cobj/source/sourcecobjs'
 require 'input/sourcecparser'
 
 ARGV.each do | fn |
   cparser = SourceCParser.new(fn)
-  p cparser.parse
+	cobjs = cparser.parse
+	p cobjs.first
+  cobjs.each do | obj |
+	  # p "---------------------------------"
+	end
 end

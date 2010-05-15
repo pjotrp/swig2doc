@@ -31,9 +31,19 @@ class SourceCParser
       raise "#{@fn} is not a Source C document!"
     end
     blocklist = split_on_curlybrace0(@fn)
+
+    # now we have the preamble + code, so let's split out the main remarks
+    # The first block gets special treatment, so as to pull out the file
+    # header remark
+
     blocklist.each do | b |
-      print "\n>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<\n"
-      print b
+      (head,remark,tail) = split_remark_block(b[:preamble])
+      h = {}
+      h[:remark_head]   = head    # before the remark
+      h[:remark]        = remark  # the main remark
+      h[:declaration]   = tail    # the var or function definition 
+      h[:code]          = b[:code]  
+      objectlist.push h
     end
     objectlist
   end
@@ -44,6 +54,8 @@ class SourceCParser
     SourceCModule.new(@modulename,objectlist)
   end
 
+  # Returns a list of tuples - where the first is the remark block
+  # and the second the code block
   def split_on_curlybrace0(fn)
     list = []
     outside = ""   # outside curly
@@ -66,7 +78,8 @@ class SourceCParser
           inside += c
           c = ''
           # write object out
-          list.push([outside,inside])
+          h = {:preamble => outside, :code => inside}
+          list.push(h)
           inside = ""
           outside = ""
         end
@@ -75,11 +88,9 @@ class SourceCParser
       elsif c == '*' and prev_c == '/' and !inside_qq and !inside_remark
         # Open remark block on /*
         inside_remarkblock = true
-        print "/*"
       elsif c == '/' and prev_c == '*' and !inside_qq and !inside_remark
         # Close remark block on */
         inside_remarkblock = false
-        print "*/"
       elsif (c == '"') and prev_c != "\\" and !inside_remarkblock and !inside_q and !inside_remark
         # String boundary change happens outside remarks, and when there
         # is no prepending backslash
@@ -103,6 +114,37 @@ class SourceCParser
     raise "#{fn} has mismatching curly braces" if curly != 0
     print lineno," lines parsed"
     list
+  end
+
+  # takes buf and walks it backwards to split out the remark
+  def split_remark_block(buf)
+    lines = buf.split(/\n/)
+
+    remark = []
+    declaration = []
+
+    inside_remark = false
+    p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+    # working backwards
+    while (line = lines.pop)
+      print line,"\n"
+      short = line.strip
+      if short.rindex("*/") == short.length-2
+        p [short.rindex("*/"),short.length-2]
+        # starting in remark block
+        inside_remark = true 
+      elsif short.index("/*") == 0 
+        # end of remark block (really the start)
+        remark.push line
+        break
+      end
+      if !inside_remark
+        declaration.push line
+      else
+        remark.push line
+      end
+    end
+    return lines,remark.reverse,declaration.reverse
   end
 end
 
