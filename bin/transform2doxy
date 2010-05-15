@@ -1,6 +1,6 @@
 #! /usr/bin/ruby
 #
-#  TRANSFORM2DOXY
+#  Transform2Doxy(gen)
 #
 #  Transform generic C style remarks to a format Doxygen can handle.
 #
