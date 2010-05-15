@@ -49,15 +49,17 @@ class SourceCParser
     outside = ""   # outside curly
     inside  = ""   # inside curly
     inside_remarkblock = false
-    inside_qq = false
+    inside_remark      = false
+    inside_qq = false # double quoted
+    inside_q = false  # single quoted 
     curly = 0
     lineno = 1
     prev_c = nil
     File.open(@fn).each_char do | c |
-      if c == '{' and !inside_qq and !inside_remarkblock
+      if c == '{' and !inside_qq and !inside_q and !inside_remarkblock and !inside_remark
         # count curly block open
         curly += 1
-      elsif c == '}' and !inside_qq and !inside_remarkblock
+      elsif c == '}' and !inside_qq and !inside_q and !inside_remarkblock and !inside_remark
         # count curly block close
         curly -= 1
         if curly == 0
@@ -68,20 +70,26 @@ class SourceCParser
           inside = ""
           outside = ""
         end
-      elsif c == '*' and prev_c == '/' and !inside_qq
+      elsif c == '/' and prev_c == '/' and !inside_remarkblock and !inside_qq and !inside_remark
+        inside_remark = true
+      elsif c == '*' and prev_c == '/' and !inside_qq and !inside_remark
         # Open remark block on /*
         inside_remarkblock = true
         print "/*"
-      elsif c == '/' and prev_c == '*' and !inside_qq
+      elsif c == '/' and prev_c == '*' and !inside_qq and !inside_remark
         # Close remark block on */
         inside_remarkblock = false
         print "*/"
-      elsif (c == '"') and prev_c != "\\" and !inside_remarkblock
+      elsif (c == '"') and prev_c != "\\" and !inside_remarkblock and !inside_q and !inside_remark
         # String boundary change happens outside remarks, and when there
         # is no prepending backslash
         inside_qq = !inside_qq
-        print prev_c,c,inside_qq,"\n"
+      elsif (c == "\'") and prev_c != "\\" and !inside_remarkblock and !inside_qq and !inside_remark
+        # Char boundary change happens outside remarks, and when there
+        # is no prepending backslash
+        inside_q = !inside_q
       elsif c == "\n"
+        inside_remark = false   # always at eol
         lineno += 1
       end
       raise "Problem with source file #{fn} at line #{lineno}" if curly < 0
