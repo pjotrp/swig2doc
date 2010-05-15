@@ -39,6 +39,7 @@ print(usage) if ARGV.size == 0
 $options = OpenStruct.new()
 $options.outdir = './output'
 Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
+$options.outdir += "/transform2dox"
 
 opts = OptionParser.new do |opts|
   opts.on("--emboss", "EMBOSS styled comments") do | b |
@@ -72,7 +73,10 @@ require 'output/cwriter'
 
 ARGV.each do | fn |
   cparser = SourceCParser.new(fn)
-	cobjs = cparser.parse
+	objs = cparser.parse
+	filename = File.basename(fn)
+	name = filename.split('.')[0]
+  cobjs = SourceCModule.new(filename,name,objs)
   writer = CWriter.new(cobjs)
 	writer.write($options.outdir)
 end

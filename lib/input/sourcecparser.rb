@@ -12,7 +12,7 @@ class SourceCParser
 
   # Prepare and open a Sourcegen C file
   def initialize fn
-    print "SourceCParser reads #{fn}\n"
+    print "\nSourceCParser reading #{fn}"
     @fn = fn
     @language = 'C'
     @modulename = nil
@@ -112,7 +112,7 @@ class SourceCParser
       prev_c = c
     end
     raise "#{fn} has mismatching curly braces" if curly != 0
-    print lineno," lines parsed"
+    # print lineno," lines parsed"
     list
   end
 
@@ -124,13 +124,12 @@ class SourceCParser
     declaration = []
 
     inside_remark = false
-    p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
     # working backwards
     while (line = lines.pop)
-      print line,"\n"
+      # print line,"\n"
       short = line.strip
       if short.rindex("*/") == short.length-2
-        p [short.rindex("*/"),short.length-2]
+        # p [short.rindex("*/"),short.length-2]
         # starting in remark block
         inside_remark = true 
       elsif short.index("/*") == 0 

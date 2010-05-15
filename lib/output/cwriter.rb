@@ -1,10 +1,12 @@
 class CWriter
 
-  def initialize(list)
-    @list = list
+  def initialize(cobjs)
+    @cobjs = cobjs
   end
 
   def write path
+    fn = path + '/' + @cobjs.filename
+    print "\nWriting #{fn}..."
     Dir.mkdir(path) if !File.directory?(path)
   end
 end
