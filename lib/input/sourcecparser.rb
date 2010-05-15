@@ -100,6 +100,7 @@ class SourceCParser
       end
       prev_c = c
     end
+    raise "#{fn} has mismatching curly braces" if curly != 0
     print lineno," lines parsed"
     list
   end
