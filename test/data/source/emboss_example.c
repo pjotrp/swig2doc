@@ -218,6 +218,7 @@ void ajTrnReadFile(AjPTrn trnObj, AjPFile trnFile)
     */
     char white[] = " \t\n\r!@#$%^&()_+=|\\~`{[}]:;\"'<,>.?/";
 
+    char test[] = "}";
     ajStrDel(&trnText);
     ajStrDel(&startsline);
     ajStrDel(&base1line);
@@ -396,7 +397,7 @@ __deprecated const AjPStr ajTrnRevCodon(const AjPTrn trnObj, const AjPStr codon)
 
 /* @func ajTrnCodonC **********************************************************
 **
-** Translates a const char * codon
+** Translates a const char * codon }
 **
 ** @param [r] trnObj [const AjPTrn] Translation tables
 ** @param [r] codon [const char *] codon to translate

@@ -61,11 +61,13 @@ opts.parse!(ARGV)
 
 exit(1) if ARGV.size == 0
 
-require 'sourcetree'
-require 'input/parserfactory'
-require 'output/textwriter'
-require 'output/htmlwriter'
+# require 'sourcetree'
+# require 'input/parserfactory'
+# require 'output/textwriter'
+# require 'output/htmlwriter'
+require 'input/sourcecparser'
 
 ARGV.each do | fn |
-  p fn
+  cparser = SourceCParser.new(fn)
+  p cparser.parse
 end
