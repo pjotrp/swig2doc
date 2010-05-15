@@ -66,4 +66,6 @@ require 'input/parserfactory'
 require 'output/textwriter'
 require 'output/htmlwriter'
 
-
+ARGV.each do | fn |
+  p fn
+end
