@@ -68,12 +68,11 @@ exit(1) if ARGV.size == 0
 require 'cobj/source/sourcecmodule'
 require 'cobj/source/sourcecobjs'
 require 'input/sourcecparser'
+require 'output/cwriter'
 
 ARGV.each do | fn |
   cparser = SourceCParser.new(fn)
 	cobjs = cparser.parse
-	p cobjs.first
-  cobjs.each do | obj |
-	  # p "---------------------------------"
-	end
+  writer = CWriter.new(cobjs)
+	writer.write($options.outdir)
 end
