@@ -1,0 +1,69 @@
+#! /usr/bin/ruby
+#
+#  TRANSFORM2DOXY
+#
+#  Transform generic C style remarks to a format Doxygen can handle.
+#
+#  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+#
+
+srcpath=File.dirname(File.dirname(__FILE__))
+libpath=srcpath+'/lib'
+$: << libpath
+
+# p $:
+
+require 'optparse'
+require 'ostruct'
+# require 'rubygems'
+require 'config/defaultconfig'
+
+defaultconfig = DefaultConfig.new(srcpath+'/etc/default.yaml')
+
+print defaultconfig.copyright_msg+"\n"
+
+usage = <<USAGE
+
+    Transform generic C style remarks to a format Doxygen can handle
+
+    For more information see http://biolib.open-bio.org/
+
+    #{defaultconfig.copyright}
+        
+    Use --help for more information
+
+USAGE
+
+print(usage) if ARGV.size == 0
+
+$options = OpenStruct.new()
+$options.outdir = './output'
+Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
+
+opts = OptionParser.new do |opts|
+  opts.on("--emboss", "EMBOSS styled comments") do | b |
+    $options.style = :emboss
+  end
+
+  opts.on_tail("-h", "--help", "Print this help") {
+    print(usage)
+    print(opts)
+    print <<EXAMPLE
+    
+Examples:
+
+    
+EXAMPLE
+    exit()
+  }
+end
+opts.parse!(ARGV)
+
+exit(1) if ARGV.size == 0
+
+require 'sourcetree'
+require 'input/parserfactory'
+require 'output/textwriter'
+require 'output/htmlwriter'
+
+
