@@ -13,9 +13,15 @@ class SourceCobject
   def to_doxy
     ret = ""
     ret += @remark_prefix.join("\n")+"\n" if @remark_prefix
-    ret += @remark.join("\n")+"\n" if @remark
+    ret += doxy_remark if @remark
     ret += @declaration.join("\n")+"\n" if @declaration
     ret += @code if @code
+    ret
+  end
+
+  def doxy_remark
+    ret = ""
+    ret += @remark.join("\n")+"\n" if @remark
     ret
   end
 end
@@ -31,6 +37,12 @@ end
 
 class SourceCfunction < SourceCobject
   def name
+  end
+
+  def doxy_remark
+    r = @remark.dup
+    r[0] = "/*!"
+    r.join("\n")+"\n"
   end
 end
 
