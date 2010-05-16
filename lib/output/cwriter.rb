@@ -13,13 +13,14 @@ class CWriter
     File.open(fn,"w") do | f |
       # Treat the first description differently
       f.print objs.descriptions.first.to_doxy_header
+      f.print "\n/*@{*/\n"
       objs.descriptions[1..-1].each do | d |
         f.print d.to_doxy
       end
       objs.functions.each do | func |
         f.print func.to_doxy
       end
-      f.print "\n"
+      f.print "\n/*@}*/\n"
     end
   end
 
