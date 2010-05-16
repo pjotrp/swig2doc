@@ -9,6 +9,15 @@ class SourceCobject
     @declaration = obj[:declaration]
     @code = obj[:code]
   end
+
+  def to_doxy
+    ret = ""
+    ret += @remark_prefix.join("\n")+"\n" if @remark_prefix
+    ret += @remark.join("\n")+"\n" if @remark
+    ret += @declaration.join("\n")+"\n" if @declaration
+    ret += @code if @code
+    ret
+  end
 end
 
 class SourceCremark < SourceCobject
@@ -17,6 +26,7 @@ class SourceCremark < SourceCobject
 
   def detailed
   end
+
 end
 
 class SourceCfunction < SourceCobject

@@ -2,7 +2,7 @@ require 'cobj/source/sourcecobjs'
 
 class SourceCModule
 
-  attr_reader :filename, :name, :functions
+  attr_reader :filename, :name, :functions, :descriptions
   attr_reader :style # :basic, :emboss
 
   def initialize filename, name, objects
