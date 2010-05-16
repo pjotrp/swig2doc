@@ -3,12 +3,16 @@ require 'cobj/source/sourcecobjs'
 class SourceCModule
 
   attr_reader :filename, :name, :functions, :variables
+  attr_reader :style # :basic, :emboss
+
   def initialize filename, name, objects
     @filename = filename
     @name = name
     @functions = []
     @variables = []
-    convert_from_raw(objects)
+    cobjs = convert_from_raw(objects)
+    @style = guess_style(objects)
+    cobjs
   end
 
   # Convert a simple list of objects (Hash/Array) as generated from Source XML
@@ -27,5 +31,21 @@ class SourceCModule
       #  raise "Unknow type <#{obj['kind']}>"
       #end
     end
+  end
+
+private
+
+  # Find the documentation style of the source code
+  #
+  # :emboss
+  #
+  #   If a function remark has the format "/* @func funcname **"
+  #
+  def guess_style objs
+    objs.each do | obj |
+      remark = obj[:remark]
+      return :emboss if remark and remark[0] =~ /\/\* @func \w+ \*\*/
+    end
+    :basic
   end
 end
