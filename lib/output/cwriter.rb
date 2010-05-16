@@ -11,7 +11,9 @@ class CWriter
 
     objs = @cmodule
     File.open(fn,"w") do | f |
-      objs.descriptions.each do | d |
+      # Treat the first description differently
+      f.print objs.descriptions.first.to_doxy_header
+      objs.descriptions[1..-1].each do | d |
         f.print d.to_doxy
       end
       objs.functions.each do | func |

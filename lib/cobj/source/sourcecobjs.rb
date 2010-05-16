@@ -8,7 +8,7 @@ module EmbossFunctionEdit
   end
 
   def moveCategory list
-    list.map { | s | s.gsub(/\@category/i,'@note') }  
+    list.map { | s | s.gsub(/\@category/i,"@par Category:\n") }  
   end
 end
 
@@ -40,12 +40,26 @@ class SourceCobject
 end
 
 class SourceCremark < SourceCobject
+  include EmbossFunctionEdit
+
   def brief
   end
 
   def detailed
   end
 
+  # Change header remark to comply with Doxygen
+  def to_doxy_header
+    r = @remark.dup
+    # Change the remark init for Doxygen
+    r[0] = "/*!"
+    if @style == :emboss
+      r = removeDoubleAt(r)
+    end
+
+    buf = r.join("\n")+"\n"
+    buf
+  end
 end
 
 class SourceCfunction < SourceCobject
