@@ -10,9 +10,8 @@ class SourceCModule
     @name = name
     @functions = []
     @descriptions = []
-    # @source_objects = objects
-    cobjs = convert_from_raw(objects)
     @style = guess_style(objects)
+    cobjs = convert_from_raw(objects)
     print " (",@style,")"
     cobjs
   end
@@ -23,9 +22,9 @@ class SourceCModule
     objects.each do | obj |
       decl = obj[:declaration].join
       if decl.count("(") == 1 and decl.count(")") == 1
-        @functions.push SourceCfunction.new(obj)
+        @functions.push SourceCfunction.new(obj,@style)
       else 
-        @descriptions.push SourceCremark.new(obj)
+        @descriptions.push SourceCremark.new(obj,@style)
       end
     end
   end

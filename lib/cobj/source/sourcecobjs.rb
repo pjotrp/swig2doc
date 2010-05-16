@@ -1,9 +1,22 @@
 # This class turns Source generated raw data into a nice object structure.
 
+module EmbossFunctionEdit
+
+  # remove EMBOSS marker
+  def removeDoubleAt list
+    list.map { | s | s.gsub(/\@\@/,'') }  
+  end
+
+  def moveCategory list
+    list.map { | s | s.gsub(/\@category/i,'@note') }  
+  end
+end
+
 class SourceCobject 
 
   attr_reader :remark, :remark_prefix, :declaration, :code
-  def initialize obj
+  def initialize obj, style
+    @style = style
     @remark = obj[:remark]
     @remark_prefix = obj[:remark_prefix]
     @declaration = obj[:declaration]
@@ -19,7 +32,7 @@ class SourceCobject
     ret
   end
 
-  def doxy_remark
+  def doxy_remark 
     ret = ""
     ret += @remark.join("\n")+"\n" if @remark
     ret
@@ -36,13 +49,23 @@ class SourceCremark < SourceCobject
 end
 
 class SourceCfunction < SourceCobject
+
+  include EmbossFunctionEdit
+
   def name
   end
 
-  def doxy_remark
+  def doxy_remark 
     r = @remark.dup
+    # Change the remark init for Doxygen
     r[0] = "/*!"
-    r.join("\n")+"\n"
+    if @style == :emboss
+      r = removeDoubleAt(r)
+      r = moveCategory(r)
+    end
+
+    buf = r.join("\n")+"\n"
+    buf
   end
 end
 
