@@ -74,7 +74,6 @@ require 'output/cwriter'
 ARGV.each do | fn |
   cparser = SourceCParser.new(fn)
 	objs = cparser.parse
-	p objs
 	filename = File.basename(fn)
 	name = filename.split('.')[0]
   cobjs = SourceCModule.new(filename,name,objs)

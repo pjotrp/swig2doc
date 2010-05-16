@@ -2,34 +2,31 @@ require 'cobj/source/sourcecobjs'
 
 class SourceCModule
 
-  attr_reader :filename, :name, :functions, :variables
+  attr_reader :filename, :name, :functions
   attr_reader :style # :basic, :emboss
 
   def initialize filename, name, objects
     @filename = filename
     @name = name
     @functions = []
-    @variables = []
+    @descriptions = []
+    # @source_objects = objects
     cobjs = convert_from_raw(objects)
     @style = guess_style(objects)
+    print " (",@style,")"
     cobjs
   end
 
-  # Convert a simple list of objects (Hash/Array) as generated from Source XML
+  # Convert a raw list of objects as generated from Source 
   # into a OOP object hierarchy
   def convert_from_raw objects
     objects.each do | obj |
-      # if obj['kind'] == 'function'
-      #  @functions.push SourceCfunction.new(obj)
-      #elsif obj['kind'] == 'variable'
-      #  @variables.push SourceCvariable.new(obj)
-      #elsif obj['kind'] == 'struct'
-      #  @structs.push SourceCstruct.new(obj)
-      #elsif obj['kind'] == 'global'
-      #  @descriptions.push SourceCremark.new(obj)
-      #else
-      #  raise "Unknow type <#{obj['kind']}>"
-      #end
+      decl = obj[:declaration].join
+      if decl.count("(") == 1 and decl.count(")") == 1
+        @functions.push SourceCfunction.new(obj)
+      else 
+        @descriptions.push SourceCremark.new(obj)
+      end
     end
   end
 

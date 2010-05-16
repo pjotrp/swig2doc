@@ -39,7 +39,7 @@ class SourceCParser
     blocklist.each do | b |
       (head,remark,tail) = split_remark_block(b[:preamble])
       h = {}
-      h[:remark_head]   = head    # before the remark
+      h[:remark_prefix] = head    # before the remark
       h[:remark]        = remark  # the main remark
       h[:declaration]   = tail    # the var or function definition 
       h[:code]          = b[:code]  
