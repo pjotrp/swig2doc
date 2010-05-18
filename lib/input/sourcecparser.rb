@@ -12,7 +12,7 @@ class SourceCParser
 
   # Prepare and open a Sourcegen C file
   def initialize fn
-    print "\nSourceCParser reading #{fn}"
+    print "\nSourceCParser reading #{fn}" if !$options.quiet
     @fn = fn
     @language = 'C'
     @modulename = nil
@@ -78,6 +78,12 @@ class SourceCParser
       elsif c == '}' and !inside_qq and !inside_q and !inside_remarkblock and !inside_remark
         # count curly block close
         curly -= 1
+        # if closing curly is on column 0 force it to zero - this is necessary
+        # because of some define statments
+        if prev_c == "\n" and curly != 0
+          print "\nWarning: forcing function close #{@fn} at line #{lineno}\n"
+          curly = 0
+        end
         if curly == 0
           inside += c
           c = ''

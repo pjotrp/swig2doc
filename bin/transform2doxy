@@ -20,8 +20,6 @@ require 'config/defaultconfig'
 
 defaultconfig = DefaultConfig.new(srcpath+'/etc/default.yaml')
 
-print defaultconfig.copyright_msg+"\n"
-
 usage = <<USAGE
 
     Transform generic C style remarks to a format Doxygen can handle
@@ -48,8 +46,13 @@ opts = OptionParser.new do |opts|
   opts.on("--debug", "Debug output") do | b |
     $options.debug = true
   end
+  opts.on("--quiet", "Minimal output") do | b |
+    $options.quiet = true
+  end
+
 
   opts.on_tail("-h", "--help", "Print this help") {
+    print defaultconfig.copyright_msg+"\n"
     print(usage)
     print(opts)
     print <<EXAMPLE
@@ -62,6 +65,10 @@ EXAMPLE
   }
 end
 opts.parse!(ARGV)
+
+if !$options.quiet
+  print defaultconfig.copyright_msg+"\n"
+end
 
 exit(1) if ARGV.size == 0
 

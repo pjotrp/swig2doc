@@ -6,16 +6,18 @@ class CWriter
 
   def write path
     fn = path + '/' + @cmodule.filename
-    print "\nWriting #{fn}..."
+    print "\nWriting #{fn}..." if !$options.quiet
     Dir.mkdir(path) if !File.directory?(path)
 
     objs = @cmodule
     File.open(fn,"w") do | f |
       # Treat the first description differently
-      f.print objs.descriptions.first.to_doxy_header
-      f.print "\n/*@{*/\n"
-      objs.descriptions[1..-1].each do | d |
-        f.print d.to_doxy
+      if objs.descriptions.size > 0
+        f.print objs.descriptions.first.to_doxy_header
+        f.print "\n/*@{*/\n"
+        objs.descriptions[1..-1].each do | d |
+          f.print d.to_doxy
+        end
       end
       objs.functions.each do | func |
         f.print func.to_doxy
