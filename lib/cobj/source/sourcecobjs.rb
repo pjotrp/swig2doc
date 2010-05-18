@@ -54,7 +54,7 @@ class SourceCremark < SourceCobject
     r = @remark.dup
     # Change the remark init for Doxygen
     r[0] = "/*!"
-    r.insert(1,"@defgroup #{@style} #{@filename}")
+    r.insert(1,"@defgroup #{@filename} #{@style} #{@filename}")
     if @style == :emboss
       r = removeDoubleAt(r)
     end
