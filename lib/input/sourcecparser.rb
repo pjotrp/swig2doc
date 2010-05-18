@@ -58,6 +58,7 @@ class SourceCParser
   # and the second the code block
   def split_on_curlybrace0(fn)
     list = []
+    line = ""
     outside = ""   # outside curly
     inside  = ""   # inside curly
     inside_remarkblock = false
@@ -66,8 +67,11 @@ class SourceCParser
     inside_q = false  # single quoted 
     curly = 0
     lineno = 1
+    prevprev_c = nil
     prev_c = nil
+    raise "Cannot find #{@fn}" if !File.exist?(@fn)
     File.open(@fn).each_char do | c |
+      line += c
       if c == '{' and !inside_qq and !inside_q and !inside_remarkblock and !inside_remark
         # count curly block open
         curly += 1
@@ -91,17 +95,34 @@ class SourceCParser
       elsif c == '/' and prev_c == '*' and !inside_qq and !inside_remark
         # Close remark block on */
         inside_remarkblock = false
-      elsif (c == '"') and prev_c != "\\" and !inside_remarkblock and !inside_q and !inside_remark
+      elsif (c == '"') and !(prev_c == "\\" and prevprev_c != "\\") and !inside_remarkblock and !inside_q and !inside_remark
         # String boundary change happens outside remarks, and when there
-        # is no prepending backslash
+        # is no single prepending backslash
         inside_qq = !inside_qq
-      elsif (c == "\'") and prev_c != "\\" and !inside_remarkblock and !inside_qq and !inside_remark
+      elsif (c == "\'") and !inside_remarkblock and !inside_qq and !inside_remark
         # Char boundary change happens outside remarks, and when there
-        # is no prepending backslash
+        # is no prepending backslash - they do not carry over new lines
         inside_q = !inside_q
       elsif c == "\n"
+        if $options.debug
+          print "/" if inside_remark
+          print "\"" if inside_qq
+          print "'" if inside_q
+        end
+        inside_q = false
         inside_remark = false   # always at eol
         lineno += 1
+        if $options.debug
+          if inside_remarkblock
+            printf "R%2d: ",curly
+          elsif curly > 0
+            printf "C%2d: ",curly
+          else
+            print "     "
+          end
+          print line
+        end
+        line = ""
       end
       raise "Problem with source file #{fn} at line #{lineno}" if curly < 0
       if curly > 0
@@ -109,9 +130,10 @@ class SourceCParser
       else
         outside += c
       end
+      prevprev_c = prev_c
       prev_c = c
     end
-    raise "#{fn} has mismatching curly braces" if curly != 0
+    raise "#{fn} has mismatching curly braces (balance=#{curly})" if curly != 0
     # print lineno," lines parsed"
     list
   end
