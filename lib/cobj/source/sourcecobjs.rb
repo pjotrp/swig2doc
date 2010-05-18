@@ -15,8 +15,9 @@ end
 class SourceCobject 
 
   attr_reader :remark, :remark_prefix, :declaration, :code
-  def initialize obj, style
+  def initialize obj, style, filename
     @style = style
+    @filename = filename
     @remark = obj[:remark]
     @remark_prefix = obj[:remark_prefix]
     @declaration = obj[:declaration]
@@ -53,7 +54,7 @@ class SourceCremark < SourceCobject
     r = @remark.dup
     # Change the remark init for Doxygen
     r[0] = "/*!"
-    r.insert(1,"@defgroup emboss EMBOSS")
+    r.insert(1,"@defgroup #{@style} #{@filename}")
     if @style == :emboss
       r = removeDoubleAt(r)
     end

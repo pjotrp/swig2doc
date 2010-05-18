@@ -22,10 +22,19 @@ class SourceCModule
     objects.each do | obj |
       decl = obj[:declaration].join
       if decl.count("(") == 1 and decl.count(")") == 1
-        @functions.push SourceCfunction.new(obj,@style)
+        @functions.push SourceCfunction.new(obj,@style,@filename)
       else 
-        @descriptions.push SourceCremark.new(obj,@style)
+        @descriptions.push SourceCremark.new(obj,@style,@filename)
       end
+    end
+    if @descriptions.size == 0
+      # inject fake header
+      obj = Hash.new
+      obj[:remark_prefix] = []
+      obj[:remark] = [ "/*", "*/" ]
+      obj[:declaration] = []
+      obj[:code] = ""
+      @descriptions.push SourceCremark.new(obj,@style,@filename)
     end
   end
 
