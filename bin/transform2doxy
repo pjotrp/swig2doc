@@ -42,9 +42,12 @@ Dir.mkdir($options.outdir) if !File.directory?($options.outdir)
 $options.outdir += "/transform2doxy"
 
 opts = OptionParser.new do |opts|
-  opts.on("--emboss", "EMBOSS styled comments") do | b |
-    $options.style = :emboss
-  end
+  opts.on("-d", "Destination dir (default #{$options.outdir})") do | d |
+	  $options.outdir = d
+	end
+  # opts.on("--emboss", "EMBOSS styled comments") do | b |
+  #   $options.style = :emboss
+  # end
 
   opts.on_tail("-h", "--help", "Print this help") {
     print(usage)
