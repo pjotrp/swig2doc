@@ -12,7 +12,7 @@ class SourceCModule
     @descriptions = []
     @style = guess_style(objects)
     cobjs = convert_from_raw(objects)
-    print " (",@style,")"
+    print " (",@style,")" if !$options.quiet
     cobjs
   end
 

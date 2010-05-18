@@ -18,6 +18,8 @@ class CWriter
         objs.descriptions[1..-1].each do | d |
           f.print d.to_doxy
         end
+      else
+        print "Warning #{fn} is missing a header!\n"
       end
       objs.functions.each do | func |
         f.print func.to_doxy
